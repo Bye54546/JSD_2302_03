@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--placeholder文本占位符，在未输入文本时所显示的内容  name：设置参数名称，不填时不会传递次参数；maxlength：设置最大字符长度；value：设置控件的值；readonly：设置为只读-->
+<form action="http://www.baidu.com">
+用户名：<input type="text" name="username" readonly maxlength="5"  placeholder="请输入用户名">
+密 码：<input type="password" name="password"readonly maxlength="5" placeholder="请输入密码">
+性别：<input type="radio" name="gender" value="man" checked id="r1">男<label for="r1"></label>
+<input type="radio" name="gender" value="woman" id="r2">女<label for="r2"></label><br>
+<input type="checkbox" name="hobby" value="cy">抽烟
+<input type="checkbox" name="hobby" value="hj">喝酒
+<input type="checkbox" name="hobby" value="tt">烫头
+<input type="checkbox" name="hobby" value="dy">点烟
+<input type="checkbox" name="hobby" value="dj">倒酒
+<input type="checkbox" name="hobby" value="grtt">给人烫头<br>
+生日: <input type="date" name="birthday" id="bd"><br>
+文件: <input type="file" name="file" id="file"><br>
+所在地：<select name="city" id="city">
+    <option value="bj">北京</option>
+    <option value="tj" selected>天津</option>
+    <option value="sh">上海</option>
+    <option value="gd">广东</option>
+</select><br>
+<input type="reset">
+<input type="button" value="自定义按钮">
+<input type="submit" value="注册">
+<hr>
+<button type="button">自定义按钮</button>
+<button type="reset">重置按钮</button>
+<button type="submit">注册按钮</button>
+<!--    &lt;!&ndash;块级分区元素，独占一行，从上往下排列&ndash;&gt;-->
+<!--    <div></div>-->
+<!--    &lt;!&ndash;行内分区元素，共占一行，从左往右排列&ndash;&gt;-->
+<!--    <span></span>-->
+</form>
+</body>
+</html>
