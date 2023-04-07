@@ -13,8 +13,8 @@
             width:200px;
             height: 200px;
             background-color:red;
-            /*margin-top: 500px;*/
-
+            /*解决父子元素粘连的问题*/
+            overflow: hidden;
         }
         #big>div{
             width: 50px;
@@ -33,12 +33,20 @@
             margin:20px 500px 200px 500px;
         }
         #d2{
+            margin: 30px 400px 300px 400px;
+        }
+        #s1 {
+            margin-right: 50px;
 
-            margin-bottom: 20px;
+        }
+#s2 {
+    margin-left: 50px;
         }
     </style>
 </head>
 <body>
+<span id="s1">span1</span>
+<span id="s2">span2</span>
 <div id="big">
     <div></div>
 </div>
