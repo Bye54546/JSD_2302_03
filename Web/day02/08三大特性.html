@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--选择器优先级：范围越小优先级越高 id>class>标签名>继承-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            /*!important 优先级提到最高*/
+            color: deeppink;!important;
+
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <p>我是P标签</p>
+    <a  href="">我是超链接</a>
+    <h1>我是一级标题</h1>
+</div>
+</body>
+</html>
