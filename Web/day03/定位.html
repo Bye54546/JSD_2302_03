@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        /*
+        ps:
+        相对定位和绝对定位他是相对于父级元素进行定位的，如果父级元素不存在定位，
+        那么就会相对于body进行定位，如果body也没有定位，那么就会相对于浏览器进行定位
+        父级元素添加定位后，子元素就会相对于父级元素进行定位，实现父子跟随效果
+        小知识：z-index:z轴的索引值，值越大越靠前(优先级，值越大优先级越高)
+        相对定位：
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        position: relative;*/
+        /*left: 200px;*/
+        /*top: 100px;
+    }
+    */
+        /*绝对定位：
+        每设置一个绝对定位就会有几层遮盖
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            left: 200px;
+        }
+        .box2 {
+            width: 300px;
+            height: 300px;
+            background-color: #333333;
+            z-index: 5;
+        }
+        */
+    /*固定定位*/
+    /*会随着页面滚动固定在页面中某个位置*/
+    /*    .box1 {*/
+    /*        width: 200px;*/
+    /*        height: 200px;*/
+    /*        background-color: red;*/
+    /*        position: fixed;*/
+    /*        left: 200px;*/
+    /*    }*/
+    /*    .box2 {*/
+    /*        width: 300px;*/
+    /*        height: 300px;*/
+    /*        background-color: #333333;*/
+    /*    }*/
+    /*    .box3 {*/
+    /*        width: 300px;*/
+    /*        height: 300px;*/
+    /*        background-color: green;*/
+    /*        position: absolute;*/
+    /*    }*/
+    /*    h1 {*/
+    /*        width: 100px;*/
+    /*        height: 10000px;*/
+    /*        background-color: blue;*/
+    /*        position: absolute;*/
+    /*        top: 100px;*/
+    /*        left: 100px;*/
+    /*    }*/
+    </style>
+</head>
+<body>
+<!--通过position来设置元素定位 值为：
+1：relative相对定位
+2、absolute绝对定位
+3、fixed固定定位
+设置定位后可以使用方向值进行调整位置：top、right、left、bottom
+绝对定位与固定定位会脱离文档流
+-->
+<!--1、相对定位-->
+<!--<div></div>-->
+<!--2、绝对定位-->
+<!--<div class="box1"></div>-->
+<!--<div class="box2"></div>-->
+<!--3、固定定位-->
+<!--<div class="box1"></div>-->
+<!--<div class="box2"></div>-->
+<!--<div class="box3"></div>-->
+<!--<h1></h1>-->
+</body>
+</html>

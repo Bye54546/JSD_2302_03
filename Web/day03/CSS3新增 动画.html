@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    /*动画
+    @keyframes my {*/
+    /*  from||0%{*/
+    /*  样式*/
+    /*  }*/
+    /*  to||50%{*/
+    /*  样式*/
+    /*  }*/
+    /*100%{*/
+    /*样式*/
+    /*}*/
+    /*}*/
+    /*
+    属性：name:动画名称
+    duration：持续时间
+    timing-function：设置动画速率（
+    ease：逐渐变慢（默认）
+    linear：匀速
+    ease-in：加速
+    ease-out：减速
+    ease-in-out：先加速后减速
+    ）
+    delay:设置动画开始时间（延时执行）
+    iteration-count：设置动画播放次数，infinite为无限循环
+    direction：设置动画播放方向（
+    normal：默认正向
+    alternate：偶数次向前播放，奇数次反向播放
+    ）
+    animation-play-state：控制播放状态--running为播放 pause为停止播放
+    */
+    @keyframes colorChange {
+      0%{
+        width: 10px;
+      height: 10px;
+        background-color: #333333;
+      }
+      50%{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+      100%{
+        width: 200px;
+        height: 200px;
+        background-color: green;
+      }
+    }
+    div{
+      width: 100px;
+      height: 100px;
+      background-color: #fff324;
+      animation: colorChange 2s linear infinite alternate paused;
+    }
+    div:hover{
+      animation-play-state: running;
+    }
+  </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
