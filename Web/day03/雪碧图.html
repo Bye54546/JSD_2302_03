@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <style>
+      /*
+      雪碧图：将多张体量小图片整合成一张并做成背景，
+      通过background-position来调整显示位置以显示不同图片。
+       */
+    .icon {
+        border: blue solid 1px;
+        display: block;
+        width: 190px;
+        height: 200px;
+        background: url("1.webp") no-repeat;
+        background-position: 0 0;
+    }
+    .icon1 {
+        border: blue solid 1px;
+        display: block;
+        width: 190px;
+        height: 200px;
+        background: url("1.webp") no-repeat;
+        background-position: -230px -320px;
+
+    }
+  </style>
+</head>
+<body>
+<span class="icon"></span>
+<span class="icon1"></span>
+</body>
+</html>

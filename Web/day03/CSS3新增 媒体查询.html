@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: #333333;
+        }
+    /*媒体查询语法：*/
+    /*@media screen and (max-width: 768px)---最大宽度（768px代表手机）*/
+        @media screen and (max-width: 768px){
+            .box{
+                background-color: red;
+            }
+            .p1{
+               display: none;
+            }
+            .p2{
+                display: block;
+            }
+        }
+        /*最大宽度 最小宽度 768-996代表平板*/
+        @media screen and (min-width: 768px) and (max-width: 996px){
+            .box{
+                background-color: green;
+            }
+            .p1{
+                display: block;
+            }
+            .p2{
+                display: none;
+            }
+        }
+        /*最小996代表电脑*/
+        @media screen and (min-width: 996px){
+            .box{
+                background-color: yellow;
+            }
+            .p1{
+                display: block;
+            }
+            .p2{
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<p class="p1">hhhhhhhhhhhh</p>
+<p class="p2">wwwwwwwwwwww</p>
+</body>
+</html>
