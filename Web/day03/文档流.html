@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <style>
+    /*
+    脱离标准流包括：浮动，绝对定位，固定定位
+    1、浮动：float
+    脱离标准流，向左或向右浮动（无上下浮动），直到遇到边界或者遇到另一个浮动元素
+     */
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #555;
+      float: left;
+    }
+    .container{
+      width: 400px;
+      height: 400px;
+      background-color: purple;
+    }
+    img{
+      float: left;
+    }
+    ul li{
+        float: left;
+        margin: 0 30px;
+    }
+  </style>
 </head>
 <body>
-<!--脱离文档流包括：浮动，绝对定位，固定定位-->
+    <div class="box"></div>
+    <div class="container"></div>
+<div>
+  <img src="../day01/6491aea044f7dd5a52c8d3bddc007c895a0de3f66d66a6b463af92fcb9214b47.jpg" alt="">
+  <img src="../day01/6491aea044f7dd5a52c8d3bddc007c895a0de3f66d66a6b463af92fcb9214b47.jpg" alt="">
+</div>
+<ul>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+</ul>
 </body>
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--   添加浮动会导致父级元素塌陷-->
+<!--    解决方案：
+        1、给父级元素设置高度
+        2、受影响的元素增加clear属性
+        3、overflow清除浮动
+        4、伪对象方式-->
+    <style>
+        .container {
+            /* 此时出现了塌陷 解决方案1：设置父元素高度*/
+            /*height: 100px;*/
+            /*解决方案2：在父级元素增加overflow：hidden,并且在增加的元素中添加clear:both*/
+            /*overflow: hidden;*/
+            width: 500px;
+            background-color: pink;
+        }
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 5px;
+            float: left;
+        }
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 5px;
+            float: left;
+        }
+        .box3 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 5px;
+            float: left;
+        }
+        /*父级元素中后续新增元素时，新增元素还会被遮盖，此时我们需要
+   给被遮盖元素添加clear属性清除浮动
+*/
+        .box4 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: 5px;
+            /*
+            left:左浮动
+            right:右浮动
+            both:全部浮动
+
+            */
+            /*clear: both;*/
+        }
+        /*
+        解决方案3：伪对象
+         */
+        .container::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</div>
+<div class="box4"></div>
+</body>
+</html>
