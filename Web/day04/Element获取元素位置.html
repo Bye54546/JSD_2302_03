@@ -1,10 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-
+<div id="box1" style="width: 100px;height: 100px;background-color: red"></div>
+<div id="box2" style="width: 100px;height: 100px;background-color: blue"></div>
+<script>
+    <!--获取元素大小-->
+    var box1 = document.getElementById('box1');
+    console.log(box1.offsetWidth);
+    console.log(box1.offsetHeight);
+//    获取页面大小，包含溢出部分
+    console.log(document.documentElement.clientWidth);
+    console.log(document.documentElement.clientHeight);
+//    获取屏幕大小
+    console.log(window.screen.width);
+    console.log(window.screen.height);
+//    获取元素总大小，不包含溢出部分
+    console.log(document.documentElement.scrollHeight);
+    console.log(document.documentElement.scrollWidth);
+//    获取元素水平滚动条向右滚动的距离
+    console.log(document.documentElement.scrollLeft);
+//    获取元素垂直滚动条向下滚动的距离
+    console.log(document.documentElement.scrollTop);
+//    定位父级左边界间距
+    console.log(box1.offsetLeft);
+//    定位父级上边界间距
+    console.log(box1.offsetTop);
+</script>
 </body>
 </html>

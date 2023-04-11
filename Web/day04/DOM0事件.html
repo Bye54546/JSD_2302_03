@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--DOM0事件优势：
+1.事件处理程序中的this指向当前元素
+2.事件与js代码分离
+DOM0的缺点：
+1.无法同时添加多个事件
+-->
+<button id="i1">按钮</button>
+<script>
+    var btn = document.getElementById("i1");
+btn.onclick = function () {
+    console.log("111");
+}
+</script>
+</body>
+</html>

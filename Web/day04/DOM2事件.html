@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--DOM2事件优势：
+1.可以绑定多个事件
+2.事件处理程序中的this指向当前元素
+3.事件与js代码分离
+缺点：
+1.无法在IE8及以下版本浏览器中使用
+-->
+<button id="i1">按钮</button>
+<script>
+<!--EventListenerOptions多个带事件的控件重叠并同时触发事件时，True表示从上到下执行，False反之-->
+  var btn = document.getElementById("i1");
+  btn.addEventListener("click",function (){
+    console.log("111");
+  },false);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Html事件缺点：
+1.只能绑定一个事件
+2.事件处理程序中的this指向window
+3.Html与js代码耦合度高
+-->
+<button onclick="clickButton()">按钮</button>
+<script>
+    function clickButton(){
+        console.log("点击了按钮")
+    }
+</script>
+</body>
+</html>
