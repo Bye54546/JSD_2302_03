@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<!--    引入到Html->console中查看-->
+<!--    新建后缀为.JS文件-->
+    <script src=""></script>
+<!--    嵌入到Html->console中查看-->
+<!--    一般在body中插入script标签，在标签中写JS语言-->
+<!--    引入网络中js文件 检查->network—>All中查看-->
+    <script src="网路文件地址"></script>
+</head>
+<body>
+<script>
+<!--    语句 与Java相同分号结尾-->
+    var num = 10;//1
+//标识符->num(变量名，起名规则与JAVA相同)，数字可以直接赋值，字符需要加引号
+//将num输出到控制台
+console.log(num);//2
+//代码执行顺序是由上到下的，如果将2与1交换位置，则会输出undefined----num无值
+/*
+原因：代码执行顺序为：var num；console.log(num)；num=10；
+ */
+//输出方式：1、到控制台
+console.log(num);
+//输出方式2、弹出框
+alert(num);
+//3、输出到页面
+document.write(num);
+
+
+</script>
+</body>
+</html>
