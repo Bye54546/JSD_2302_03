@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log(Date.now());//返回当前时间距离1970年1月1日0时0分0秒的毫秒数
+    var date = new Date();//创建一个Date对象
+    console.log(date);//输出当前时间
+    Date.parse("2018-10-10");//将字符串转换成毫秒数
+    console.log(Date.parse("2018-10-10"));
+    console.log(Date.parse("2018-10-10 10:10:10"));
+    Date.UTC(2018, 10, 10);//将指定的日期转换成毫秒数
+    console.log(Date.UTC(2018, 10, 10));
+    date.getYear();//返回当前距1900年年份
+    console.log(date.getYear());
+    date.getFullYear();//返回当前年份
+    console.log(date.getFullYear());
+//写法：date.返回值名称()----返回相应
+</script>
+</body>
+</html>
