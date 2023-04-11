@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class=>
+    导航
+</div>
+<div id="box1"></div>
+<script>
+    //创建元素
+    var text =document.createElement("p");
+    console.log(text);
+    //创建文本
+    var textNode = document.createTextNode("这是一个文本");
+    console.log(textNode);
+    //将文本添加到元素中
+    text.appendChild(textNode);
+    console.log(text);
+    //将元素添加到页面中
+    // document.body.appendChild(text);
+    //将p元素添加到box1中
+    document.getElementById("box1").appendChild(text);
+    console.log(text);
+    //创建属性
+    var id = document.createAttribute("id");
+    console.log(id);
+    //设置属性值
+    id.value = "box";
+    console.log(id);
+    //将属性添加到元素中
+    text.setAttributeNode(id);
+    console.log(text);
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box" id="root">Hello</div>
+<script>
+    // 1. 获取元素对象.
+    var root = document.getElementById('root');
+    // 2. 设置元素对象的属性
+    root.className = 'box';
+    root.style.color = 'red';
+    root.style.fontSize = '30px';
+    root.style.backgroundColor = 'yellow';
+    root.style.border='10px solid blue';
+    console.log(root.className);
+    //为root添加class为Boxes
+    root.classList.add('Boxes');
+    console.log(root.className);
+    //删除root的class为Boxes
+    root.classList.remove('Boxes');
+    console.log(root.className);
+    //切换root的class为Boxes
+    root.classList.toggle('Boxes');
+    console.log(root.className);
+    //判断root是否有class为Boxes
+    console.log(root.classList.contains('Boxes'));
+    //通过innerHtml获取或设置元素的内容
+    console.log(root.innerHTML = '<span>World</span>');
+//    通过innerText获取或设置元素的内容
+//    inner Text不会解析标签
+    console.log(root.innerText = 'World');
+</script>
+</body>
+</html>

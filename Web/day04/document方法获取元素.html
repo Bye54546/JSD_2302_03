@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+div{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+<div align="center">555</div>
+<div class="c1">555</div>
+<div id="root">555</div>
+<form name="form"></form>
+<div class="nav"></div>
+<div class="nav"></div>
+<script>
+  console.log(document);
+  //通过nodeType属性判断所操作的是否是一个文档对象
+  if(document.nodeType==9){
+    console.log("是一个文档对象");
+  }
+    //通过nodeName属性判断所操作的是否是一个文档对象
+    if(document.nodeName=="#document"){
+        console.log("是一个文档对象");
+    }
+//    通过document.getElementByTagName()方法获取元素
+  var divs=document.getElementsByTagName("div")[0];
+  console.log(divs);
+  divs.innerHTML="666";
+  //通过document.getElementsByClassName()方法获取元素
+  document.getElementsByClassName("c1")[0].innerHTML="777";
+    //通过document.getElementsByName()方法获取元素
+  document.getElementsByName("form")[0].innerHTML = "888";
+  //通过document.getElementById()方法获取元素
+  var root=document.getElementById("root");
+    root.innerHTML="999";
+    console.log(root);
+    //通过document.querySelector()（CSS选择器作为参数）方法获取元素，只能获取一个元素
+  var nvas = document.querySelector(".nav");//id+#号，class+.号
+  console.log(nvas);
+    //通过document.querySelectorAll()（CSS选择器作为参数）方法获取元素，可以获取多个元素
+  var nvas = document.querySelectorAll(".nav");//id+#号，class+.号
+    console.log(nvas);
+</script>
+
+</body>
+</html>
