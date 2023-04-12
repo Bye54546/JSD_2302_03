@@ -19,6 +19,7 @@
     <h3>注册页面</h3>
     <input type="text" placeholder="请输入用户名" v-model="user.username">
     <input type="password" placeholder="请输入密码" v-model="user.password">
+
 </div>
 <script src="vue.min.js"></script>
 <script>
@@ -31,7 +32,7 @@
                 password:""}
         }
     })
-
+    console.log(v.user.password)
 </script>
 </body>
 </html>

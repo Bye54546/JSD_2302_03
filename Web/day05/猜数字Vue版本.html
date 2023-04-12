@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <input type="text" placeholder="请输入1-100之间整数" v-model="n1" id="in1">
+  <input type="button" value="猜猜看" @click="f()" class="btn">
+  <h3>结果:{{result}}</h3>
+</div>
+<script src="vue.min.js"></script>
+<script>
+var in1=document.getElementById("in1");
+in1.onkeyup=function(){
+    if(this.value>100){
+        this.value=100;
+    }
+    if(this.value<1){
+        this.value=1;
+    }
+}
+var b=false;
+in1:onfocus=function(){
+  b=true;
+}
+in1:onkeyup=function(e){
+  if(e.keyCode==13&&b){
+    v.f();
+  }
+
+};
+  var num = Math.floor(Math.random() * 100 + 1);
+  console.log(num)
+  let v=new Vue({
+    el:"body>div",
+    data:{
+      result: "",
+      n1:""
+    },
+    methods:{
+      f(){
+        if(v.n1>num){
+          v.result="猜大了";
+      }else if (v.n1<num){
+            v.result="猜小了";
+        }else {
+          v.result="猜对了";
+        }
+    }
+  }
+  })
+
+</script>
+</body>
+</html>

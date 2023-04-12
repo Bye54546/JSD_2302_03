@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <td>照片</td>
+            <td><img src="../day01/1.jpg"></td>
+        </tr>
+        <tr><td>名字:</td><td>{{p.name}}</td></tr>
+        <tr><td>年龄:</td><td>{{p.age}}</td></tr>
+        <tr><td>好友:</td><td><ul><li v-for="name in p.friends">{{name}}</li></ul></td></tr>
+    </table>
+    <input type="button" value="加载数据" @click="f()">
+    <script src="vue.min.js"></script>
+    <script>
+        let v = new Vue({
+            el:"body>div",
+            data:{
+                p:{}
+            },
+            methods:{
+                f(){
+                    v.p={
+                        name:"张三",
+                        age:18,
+                        friends:["李四","王五"]
+                    }
+                }
+            }
+        })
+    </script>
+</div>
+</body>
+</html>

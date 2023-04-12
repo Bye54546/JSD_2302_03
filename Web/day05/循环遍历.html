@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    {{info}}
+    <ul>
+        <li v-for="name in arr">{{name}}</li>
+    </ul>
+    <table border="1">
+        <caption>商品列表</caption>
+        <tr>
+            <th>序号</th>
+            <th>标题</th>
+            <th>价格</th>
+            <th>库存</th>
+        </tr>
+        <tr v-for="(p,i) in products">
+            <td>{{i+1}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.stock}}</td>
+        </tr>
+    </table>
+</div>
+<script src="vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"Hello VUE!",
+            arr:[1,2,3,4,5,6,7,8,9,10],
+            products:[
+                {title:"苹果",price:5.5,stock:100},
+                {title:"香蕉",price:2.5,stock:200},
+                {title:"橘子",price:3.5,stock:300},
+                {title:"梨子",price:4.5,stock:400},
+                {title:"葡萄",price:6.5,stock:500},
+                {title:"西瓜",price:7.5,stock:600},
+                {title:"草莓",price:8.5,stock:700},
+                {title:"樱桃",price:9.5,stock:800},
+                {title:"榴莲",price:10.5,stock:900},
+                {title:"火龙果",price:11.5,stock:1000},]
+        }
+    })
+</script>
+</body>
+</html>
