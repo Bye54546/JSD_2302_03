@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  {{info}}
+<!--  解释以下以下代码-->
+<!--     1. @click="f"，让元素的某个事件和方法进行绑定-->
+<!--     2. v-on:click="f()"，让元素的某个事件和方法进行绑定-->
+<!--     3. f()，调用方法-->
+  <input type="button" value="按钮1" @click="f">
+  <input type="button" value="按钮2" v-on:click="f()">
+</div>
+<script src="vue.min.js"></script>
+<script>
+  let v = new Vue({
+    el:"body>div",
+    data:{
+      info:"事件绑定测试",
+    },
+    methods:{
+      f() {
+        alert("事件绑定测试")
+      }
+    }
+  })
+</script>
+</body>
+</html>

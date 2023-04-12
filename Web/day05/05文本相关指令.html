@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="box">
+    {{info}}
+<!--    插值用法不依赖标签的-->
+    <p>{{info}}</p>
+<!--    v-text="变量"，让元素的文本内容和变量进行绑定，必须写在标签里面-->
+<!--    只有V-html可以识别标签，其他方法会当成字符串原样输出-->
+    <p v-html="info"></p>
+</div>
+<script src="vue.min.js"></script>
+<script>
+<!--    let：可变变量；const：不可变变量；var:任意变量-->
+let v = new Vue({
+    el:".box",
+    data:{
+        info:"文本相关测试<b>新内容</b>"
+    }
+})
+</script>
+</body>
+</html>

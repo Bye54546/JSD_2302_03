@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    {{info}}
+    {{user.username}}
+    {{user.password}}
+<!--v-model="变量"为双向绑定，变量值的改变会影响页面控件，控件值的改变会影响页面-->
+<input type="text" v-model="info">
+    <input type="text" :value="info">
+    <input type="text" v-bind:value="info">
+    <h3>注册页面</h3>
+    <input type="text" placeholder="请输入用户名" v-model="user.username">
+    <input type="password" placeholder="请输入密码" v-model="user.password">
+</div>
+<script src="vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"属性绑定测试",
+            user:{
+                username:"",
+                password:""}
+        }
+    })
+
+</script>
+</body>
+</html>

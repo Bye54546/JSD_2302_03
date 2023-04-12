@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <input type="text" v-model="n1">
+    <input type="text" v-model="n2">
+    <input type="button" value="+" @click="f(1)">
+    <input type="button" value="-" @click="f(2)">
+    <input type="button" value="*" @click="f(3)">
+    <input type="button" value="/" @click="f(4)">
+    <h3>结果：{{result}}</h3>
+</div>
+<script src="vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            n1:0,
+            n2:0,
+            result:0
+        },
+        methods:{
+            f(type) {
+                switch (type) {
+                    case 1:
+                        v.result = parseInt(v.n1) + parseInt(v.n2);
+                        break;
+                    case 2:
+                        v.result = parseInt(v.n1) - parseInt(v.n2);
+                        break;
+                    case 3:
+                        v.result = parseInt(v.n1) * parseInt(v.n2);
+                        break;
+                    case 4:
+                        this.result = parseInt(this.n1) / parseInt(this.n2)
+                        break;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

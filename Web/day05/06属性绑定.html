@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    {{info}}
+<!--    :属性名=变量，让元素某属性的值和变量进行绑定-->
+<input type="text" :value="info">
+<!--    让元素的某属性值和变量进行绑定，去掉V-bind为简写-->
+<input type="text" v-bind:value="info">
+<a :href="url">超链接</a>
+<!--    img标签的src属性绑定-->
+<img :src="imgUrl" alt="">
+</div>
+<script src="vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"属性绑定测试",
+            url: "http://www.baidu.com",
+            imgUrl: "../day01/1.jpg"
+
+        }
+    })
+</script>
+</body>
+</html>
