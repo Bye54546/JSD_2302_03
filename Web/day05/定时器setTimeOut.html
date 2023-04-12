@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--setInertVal：
+    与setTimeOut区别为：TimeOut为延时开始，inertVal为每次运行时间隔多少秒-->
+
+</head>
+<body>
+<script>
+
+    // setTimeout(function (){
+    //     console.log("大家好")
+    // },3000)
+    // var name="林林林";
+    // var user={
+    //     name:"林琳霖",
+    //     getName:function(){
+    //         console.log(this.name);//此时This指向user
+    //         var that=this;
+    //         setTimeout(function (){
+    //             // console.log(this.name);输出林林林
+    //             console.log(that.name)//输出林琳霖
+    //         },1000)//此时This指向全局（Window）
+    //     }
+    // };
+    // user.getName()
+    var timer = setTimeout(function (){
+        console.log("我要开始动了");
+    },3000)
+    clearTimeout(timer);/*取消定时器*/
+</script>
+</body>
+</html>

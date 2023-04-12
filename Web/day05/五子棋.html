@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>双人五子棋</title>
+  <style>
+    canvas {
+      border: 1px solid #999;
+    /*  设置居中*/
+        margin: 0 auto;
+        display: block;
+    }
+  </style>
+</head>
+<body>
+<canvas id="game-board" width="450" height="450"></canvas>
+<script>
+  // 游戏状态
+  const GAME_STATE = {
+    x: 0,
+    o: 1,
+    empty: 2
+  };
+
+  // 棋盘大小和格子大小
+  const BOARD_SIZE = 15;
+  const CELL_SIZE = 30;
+
+  // 画布和上下文
+  const canvas = document.getElementById("game-board");
+  const context = canvas.getContext("2d");
+
+  // 绘制棋盘
+  function drawBoard() {
+    context.fillStyle = "#f8d08b";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.strokeStyle = "#000";
+    context.beginPath();
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      context.moveTo(CELL_SIZE / 2 + i * CELL_SIZE, CELL_SIZE / 2);
+      context.lineTo(CELL_SIZE / 2 + i * CELL_SIZE, canvas.height - CELL_SIZE / 2);
+      context.moveTo(CELL_SIZE / 2, CELL_SIZE / 2 + i * CELL_SIZE);
+      context.lineTo(canvas.width - CELL_SIZE / 2, CELL_SIZE / 2 + i * CELL_SIZE);
+    }
+    context.stroke();
+  }
+
+  // 初始化棋盘
+  let board = [];
+  function initBoard() {
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      board[i] = [];
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        board[i][j] = GAME_STATE.empty;
+      }
+    }
+  }
+
+  // 绘制棋子
+  function drawPiece(row, col, player) {
+    const x = col * CELL_SIZE + CELL_SIZE / 2;
+    const y = row * CELL_SIZE + CELL_SIZE / 2;
+    context.beginPath();
+    context.arc(x, y, CELL_SIZE / 2 - 2, 0, 2 * Math.PI);
+    context.closePath();
+    context.fillStyle = player === GAME_STATE.x ? "#222" : "#fff";
+    context.fill();
+  }
+
+  // 落子
+  function placePiece(row, col, player) {
+    board[row][col] = player;
+    drawPiece(row, col, player);
+  }
+
+  // 判断游戏是否结束
+  function isGameOver(row, col) {
+    const player = board[row][col];
+    let count = 0;
+    let r, c;
+
+    // 判断行
+    for (c = 0; c < BOARD_SIZE; c++) {
+      if (board[row][c] === player) {
+        count++;
+      } else {
+        count = 0;
+      }
+      if (count >= 5) {
+        return true;
+      }
+    }
+
+    // 判断列
+    count = 0;
+    for (r = 0; r < BOARD_SIZE; r++) {
+      if (board[r][col] === player) {
+        count++;
+      } else {
+        count = 0;
+      }
+      if (count >= 5) {
+        return true;
+      }
+    }
+
+    // 判断对角线
+    count = 0;
+    r = row;
+    c = col;
+    while (r >= 0 && c >= 0) {
+      if (board[r][c] === player) {
+        count++;
+      } else {
+        break;
+      }
+      r--;
+      c--;
+    }
+    r = row + 1;
+    c = col + 1;
+    while (r < BOARD_SIZE && c < BOARD_SIZE) {
+      if (board[r][c] === player) {
+        count++;
+      } else {
+        break;
+      }
+      r++;
+      c++;
+    }
+    if (count >= 5) {
+      return true;
+    }
+
+    // 判断反对角线
+    count = 0;
+    r = row;
+    c = col;
+    while (r >= 0 && c < BOARD_SIZE) {
+      if (board[r][c] === player) {
+        count++;
+      } else {
+        break;
+      }
+      r--;
+      c++;
+    }
+    r = row + 1;
+    c = col - 1;
+    while (r < BOARD_SIZE && c >= 0) {
+      if (board[r][c] === player) {
+        count++;
+      } else {
+        break;
+      }
+      r++;
+      c--;
+    }
+    if (count >= 5) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // 下一步玩家
+  let nextPlayer = GAME_STATE.x;
+  const playerText = document.getElementById("player-text");
+
+  // 绑定点击事件
+  canvas.addEventListener("click", function(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const row = Math.floor(y / CELL_SIZE);
+    const col = Math.floor(x / CELL_SIZE);
+    if (board[row][col] === GAME_STATE.empty) {
+      placePiece(row, col, nextPlayer);
+      if (isGameOver(row, col)) {
+        alert(`玩家 ${nextPlayer === GAME_STATE.x ? "X" : "O"} 赢了！`);
+        initBoard();
+        drawBoard();
+        nextPlayer = GAME_STATE.x;
+        playerText.textContent = "玩家 X";
+        return;
+      }
+      nextPlayer = nextPlayer === GAME_STATE.x ? GAME_STATE.o : GAME_STATE.x;
+      playerText.textContent = `玩家 ${nextPlayer === GAME_STATE.x ? "X" : "O"}`;
+    }
+  });
+
+  // 开始游戏
+  initBoard();
+  drawBoard();
+  playerText.textContent = "玩家 X";
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" name="" id="username">
+<input type="text" name="" id="password">
+<script>
+    var username = document.getElementById("username");
+    username.onkeydown = function (e){
+      console.log("按下了")
+    }
+    username.onkeyup = function (e){
+      console.log(e.target.value)
+    }
+    username.onkeypress = function (){
+      console.log("e");
+    }
+    var password = document.getElementById("password");
+    password.onkeyup = function (e){
+      //    e.keyCode:返回键盘上的键的编码
+      console.log(e.keyCode);
+      if(e.keyCode == 13){
+        console.log("回车了")
+      }
+    }
+</script>
+</body>
+</html>

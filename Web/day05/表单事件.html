@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" name="" id="username">
+<input type="text" name="" id="password">
+<form id="myForm" onsubmit="submitHandle" action="#">
+<input type="text"id="username">
+<button id="btn">重置</button>
+<button id="btn1">提交</button>
+
+</form>
+<script>
+    var btn=document.getElementById("btn");
+    var form=document.getElementById("myForm");
+    var btn1=document.getElementById("btn1");
+    btn.onclick=function (){
+        form.reset();//清空表单
+    }
+    btn1.onclick= function submitHandle(){
+    console.log("提交成功")
+}
+    //    oninput:当用户在表单元素中输入内容时触发
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    username.oninput = function(e){
+        console.log(e.target.value);
+    }
+    //    onselect:当用户选中表单元素中的内容时触发
+    username.onselect = function(e){
+        console.log("选中了");
+    }
+    //失去焦点与回车时触发
+   password.onchange = function(e){
+        console.log("改变了");
+    }
+</script>
+</body>
+</html>

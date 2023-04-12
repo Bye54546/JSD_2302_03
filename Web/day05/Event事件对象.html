@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<a href="https://itbaizhan.com" id="i1">111111</a>
+
+<script>
+
+    var btn = document.getElementById("btn");
+    btn.onclick=function (event){
+    //    event.target:返回触发事件的元素
+        event.target.innerHTML="我被点击了";
+    //    event.type:返回事件类型
+        console.log(event.type)
+    }
+    var i1 = document.getElementById("i1");
+    i1.onclick=function (event){
+        event.preventDefault();
+        console.log("点了但是我就不跳")
+    }
+
+</script>
+</body>
+</html>
