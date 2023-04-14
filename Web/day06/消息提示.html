@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-button :plain="true" @click="open2">成功</el-button>
+        <el-button :plain="true" @click="open3">警告</el-button>
+        <el-button :plain="true" @click="open1">消息</el-button>
+        <el-button :plain="true" @click="open4">错误</el-button>
+    </template>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                info:"HelloEUI!"
+            }
+        },
+        methods:{
+            open1() {
+                this.$message('这是一条消息提示');
+            },
+            open2() {
+                v.$message.success("成功!");
+            },
+            open3() {
+                v.$message.warning("警告");
+            },
+            open4() {
+                this.$message.error('错了哦，这是一条错误消息');
+            }
+        }
+    })
+</script>
+</html>

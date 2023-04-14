@@ -17,12 +17,14 @@
             <th>标题</th>
             <th>价格</th>
             <th>库存</th>
+            <th>总价</th>
         </tr>
         <tr v-for="(p,i) in products">
             <td>{{i+1}}</td>
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
             <td>{{p.stock}}</td>
+            <td>{{p.total}}</td>
         </tr>
     </table>
 </div>
@@ -34,18 +36,22 @@
             info:"Hello VUE!",
             arr:[1,2,3,4,5,6,7,8,9,10],
             products:[
-                {title:"苹果",price:5.5,stock:100},
-                {title:"香蕉",price:2.5,stock:200},
-                {title:"橘子",price:3.5,stock:300},
-                {title:"梨子",price:4.5,stock:400},
-                {title:"葡萄",price:6.5,stock:500},
-                {title:"西瓜",price:7.5,stock:600},
-                {title:"草莓",price:8.5,stock:700},
-                {title:"樱桃",price:9.5,stock:800},
-                {title:"榴莲",price:10.5,stock:900},
-                {title:"火龙果",price:11.5,stock:1000},]
+                {title:"苹果",price:5.5,stock:100,total:0},
+                {title:"香蕉",price:2.5,stock:200,total:0},
+                {title:"橘子",price:3.0,stock:300,total:0},
+                {title:"西瓜",price:4.0,stock:400,total:0},
+                {title:"草莓",price:10.0,stock:500,total:0},
+                {title:"葡萄",price:15.0,stock:600,total:0},
+                {title:"樱桃",price:20.0,stock:700,total:0},
+                {title:"梨",price:25.0,stock:800,total:0},
+                {title:"桃子",price:30.0,stock:900,total:0},
+                {title:"柠檬",price:35.0,stock:1000,total:0}
+            ]
         }
     })
+    for (let i = 0; i < v.products.length; i++) {
+        v.products[i].total = v.products[i].price * v.products[i].stock;
+    }
 </script>
 </body>
 </html>

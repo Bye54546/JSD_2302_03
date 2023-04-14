@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+
+    <input type="text" placeholder="" v-model="e.name">
+    <input type="text" placeholder="" v-model="e.sal">
+    <input type="text" placeholder="" v-model="e.job">
+    <input type="button" value="添加" @click="add()">
+    <table border="1">
+        <caption>员工列表</caption>
+        <tr>
+            <td>序号</td>
+            <td>姓名</td>
+            <td>工资</td>
+            <td>职位</td>
+            <td>操作</td>
+        </tr>
+        <tr v-for="(e,i) in arr">
+            <td>{{i+1}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.sal}}</td>
+            <td>{{e.job}}</td>
+            <td><input type="button" value="呀谁去吧" @click="del(i)"></td>
+        </tr>
+    </table>
+</div>
+<script src="../day05/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el: "body>div",
+        data: {
+            e: {name: "", sal: "", job: ""},
+            arr: [{name: "张三", sal: 1000, job: "经理"},
+                {name: "李四", sal: 2000, job: "总监"},
+                {name: "王五", sal: 3000, job: "经理"},
+                {name: "赵六", sal: 4000, job: "总监"},
+                {name: "田七", sal: 5000, job: "经理"}]
+        },
+        methods: {
+            add() {
+                v.arr.push(v.e);
+                v.e = {name: "", sal: "", job: ""};
+            },
+        del(i) {
+            v.arr.splice(i, 1);
+        }
+        },
+    })
+</script>
+</body>
+</html>

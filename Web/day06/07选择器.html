@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-select v-model="value" placeholder="请选择">
+            <el-option
+                    v-for="item in options"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+    </template>
+    <h1>{{value}}</h1>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+        return {
+            value: '',
+            options: [{
+            value: '选项1',
+            label: '黄金糕'
+            }, {
+            value: '选项2',
+            label: '双皮奶'
+            }, {
+            value: '选项3',
+            label: '蚵仔煎'
+            }, {
+            value: '选项4',
+            label: '龙须面'
+            }, {
+            value: '选项5',
+            label: '北京烤鸭'
+            }]
+        }
+    },
+    methods:{
+
+    }
+  })
+</script>
+</html>

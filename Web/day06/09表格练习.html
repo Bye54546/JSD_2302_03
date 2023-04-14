@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <h3>员工列表</h3>
+    <el-table :data="arr" style="width: 100%">
+        <el-table-column type="index" label="序号" width="180">
+        </el-table-column>
+        <el-table-column prop="title" label="名称" width="180">
+        </el-table-column>
+        <el-table-column prop="price" label="单价" width="180">
+        </el-table-column>
+        <el-table-column prop="stock" label="库存" width="180">
+        </el-table-column>
+        <el-table-column label="操作">
+            <!--template是自定义列时必须添加的标签并且在里面要有slot-scope属性-->
+            <!--scope变量里面包含当前行的信息
+            scope.$index代表当前行的下标
+            scope.row代表的是当前行对应数组里面的对象-->
+            <template slot-scope="scope">
+                <el-button
+                        size="mini"
+                        type="danger"
+                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+        </el-table-column>
+
+    </el-table>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        arr:[
+            {title:"苹果",price:5.5,stock:100},
+            {title:"香蕉",price:2.5,stock:200},
+            {title:"橘子",price:3.0,stock:300}
+        ]
+      }
+    },
+        methods:{
+            handleDelete(i,e){
+                //从arr数组中删除位置i的1条数据
+                v.arr.splice(i,1);
+                v.$message(e.title+"被删除!");
+            }
+        }
+  })
+</script>
+</html>

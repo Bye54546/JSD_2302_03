@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-button>默认按钮</el-button>
+        <el-button type="primary">主要按钮</el-button>
+        <el-button type="success">成功按钮</el-button>
+        <el-button type="info">信息按钮</el-button>
+        <el-button type="warning">警告按钮</el-button>
+        <el-button type="danger">危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+        <el-button plain>朴素按钮</el-button>
+        <el-button type="primary" plain>主要按钮</el-button>
+        <el-button type="success" plain>成功按钮</el-button>
+        <el-button type="info" plain>信息按钮</el-button>
+        <el-button type="warning" plain>警告按钮</el-button>
+        <el-button type="danger" plain>危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+        <el-button round>圆角按钮</el-button>
+        <el-button type="primary" round>主要按钮</el-button>
+        <el-button type="success" round>成功按钮</el-button>
+        <el-button type="info" round>信息按钮</el-button>
+        <el-button type="warning" round>警告按钮</el-button>
+        <el-button type="danger" round>危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+    </el-row>
+    <hr>
+    <h3>按钮尺寸</h3>
+    <el-row>
+        <el-button type="primary" size="large">大型按钮</el-button>
+        <el-button type="primary">默认按钮</el-button>
+        <el-button type="primary" size="small">小型按钮</el-button>
+        <el-button type="primary" size="mini">迷你按钮</el-button>
+    </el-row>
+    <hr>
+    <h3>按钮组</h3>
+    <el-row>
+        <el-button-group>
+
+            <el-button type="success">成功按钮</el-button>
+            <el-button type="danger" plain>危险按钮</el-button>
+            <el-button type="warning" plain>警告按钮</el-button>
+            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+        </el-button-group>
+        <h3>图标</h3>
+        <el-row>
+            <el-button type="primary" icon="el-icon-search">搜索</el-button>
+            <el-button type="primary" icon="el-icon-edit">编辑</el-button>
+            <el-button type="primary" icon="el-icon-delete">删除</el-button>
+            <el-button type="primary" icon="el-icon-check">查看</el-button>
+            <el-button type="primary" icon="el-icon-share">分享</el-button>
+        </el-row>
+    </el-row>
+</div>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                info:"HelloEUI!"
+            }
+        },
+        methods:{
+
+        }
+    })
+</script>
+
+</body>
+</html>

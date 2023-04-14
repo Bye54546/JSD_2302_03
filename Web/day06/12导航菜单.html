@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+<!--  //default-active="1" 设置默认选中位置 默认选中的菜单项的 index，index 的优先级高于 route-->
+  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu-item index="1">处理中心</el-menu-item>
+    <el-submenu index="2">
+      <template slot="title">我的工作台</template>
+      <el-menu-item index="2-1">选项1</el-menu-item>
+      <el-menu-item index="2-2">选项2</el-menu-item>
+      <el-menu-item index="2-3">选项3</el-menu-item>
+      <el-submenu index="2-4">
+        <template slot="title">选项4</template>
+        <el-menu-item index="2-4-1">选项1</el-menu-item>
+        <el-menu-item index="2-4-2">选项2</el-menu-item>
+        <el-menu-item index="2-4-3">选项3</el-menu-item>
+      </el-submenu>
+    </el-submenu>
+    <el-menu-item index="3" disabled>消息中心</el-menu-item>
+    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+  </el-menu>
+  <div class="line"></div>
+  <el-menu
+          :default-active="activeIndex2"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+    <el-menu-item index="1">处理中心</el-menu-item>
+    <el-submenu index="2">
+      <template slot="title">我的工作台</template>
+      <el-menu-item index="2-1">选项1</el-menu-item>
+      <el-menu-item index="2-2">选项2</el-menu-item>
+      <el-menu-item index="2-3">选项3</el-menu-item>
+      <el-submenu index="2-4">
+        <template slot="title">选项4</template>
+        <el-menu-item index="2-4-1">选项1</el-menu-item>
+        <el-menu-item index="2-4-2">选项2</el-menu-item>
+        <el-menu-item index="2-4-3">选项3</el-menu-item>
+      </el-submenu>
+    </el-submenu>
+    <el-menu-item index="3" disabled>消息中心</el-menu-item>
+    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+  </el-menu>
+  <h1>自己的导航菜单</h1>
+  <el-menu :default-active="activeIndex" mode="horizontal">
+    <el-menu-item index="1">首页</el-menu-item>
+    <el-menu-item index="2">直播课</el-menu-item>
+    <el-menu-item index="3">线上课</el-menu-item>
+    <el-menu-item index="4">脱产班</el-menu-item>
+    <el-submenu index="5">
+      <template slot="title">选项4</template>
+      <el-menu-item index="5-1">选项1</el-menu-item>
+      <el-menu-item index="5-2">选项2</el-menu-item>
+      <el-submenu index="6">
+        <template slot="title">选项5</template>
+        <el-menu-item index="6-1">选项1</el-menu-item>
+        <el-menu-item index="6-2">选项2</el-menu-item>
+    </el-submenu>
+    </el-submenu>
+  </el-menu>
+
+
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+ let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        activeIndex: '1',
+        activeIndex2: '1'
+      }
+    },
+   methods:{
+     handleSelect(key, keyPath) {
+       console.log(key, keyPath);
+     }
+   }
+  })
+</script>
+</html>

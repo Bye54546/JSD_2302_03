@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  {{info}}
+<!--  v-if
+    v-show
+    v-if与v-show的区别：
+    v-if：当条件为false时，不会渲染到页面中
+    v-show：当条件为false时，会渲染到页面中，只是display为none
+    -->
+    <p v-if="isShow">刘德华</p>
+    <p v-show="isShow">张学友</p>
+    <p v-if="isShow">黎明</p>
+    <p v-show="isShow">郭富城</p>
+    <p v-if="isShow">周杰伦</p>
+    <p v-show="isShow">林俊杰</p>
+</div>
+<script src="../day05/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            info:"11",
+          isShow:false,
+        },
+    })
+</script>
+</body>
+</html>

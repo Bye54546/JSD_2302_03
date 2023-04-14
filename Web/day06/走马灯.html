@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>走马灯效果</title>
+  <style>
+    #slider {
+      overflow: hidden;
+      height: 100px;
+      width: 300px;
+      margin: 0 auto;
+    }
+    #slider figure {
+      position: relative;
+      width: 500%;
+      margin: 0;
+      left: 0;
+      animation: 15s slider infinite;
+    }
+    #slider figure img {
+      width: 20%;
+      float: left;
+    }
+    @keyframes slider {
+      0% {
+        left: 0;
+      }
+      20% {
+        left: 0;
+      }
+      25% {
+        left: -100%;
+      }
+      45% {
+        left: -100%;
+      }
+      50% {
+        left: -200%;
+      }
+      70% {
+        left: -200%;
+      }
+      75% {
+        left: -300%;
+      }
+      95% {
+        left: -300%;
+      }
+      100% {
+        left: -400%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="slider">
+  <figure>
+    <img src="https://via.placeholder.com/150/0000FF/808080?text=Image+1" alt="Image 1">
+    <img src="https://via.placeholder.com/150/FF0000/808080?text=Image+2" alt="Image 2">
+    <img src="https://via.placeholder.com/150/00FF00/808080?text=Image+3" alt="Image 3">
+    <img src="https://via.placeholder.com/150/000000/808080?text=Image+4" alt="Image 4">
+    <img src="https://via.placeholder.com/150/FFFFFF/808080?text=Image+5" alt="Image 5">
+  </figure>
+</div>
+</body>
+</html>
