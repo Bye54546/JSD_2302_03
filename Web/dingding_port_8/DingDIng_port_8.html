@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <style>
+        .el-main::-webkit-scrollbar {
+            display: none;
+        }
+        #app {/*整个页面*/
+            background-color: #ebedf0;
+            margin: 0 auto;
+            min-width: 750px;
+            height: 732px;
+        }
+        .Title{/*标题*/
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            min-width: 750px;
+            position: relative;
+            text-align: center;
+            white-space: pre-wrap;
+            font-size: 40px;
+            color: rgb(23, 26, 29);
+            margin-bottom: 32px;
+        }
+        .lunbotu-bottom{/*轮播图底部div*/
+            max-width: 1200px;
+            height: 534px;
+        }
+        .lunbotu{/*轮播图存放得父级div*/
+            min-width: 2600px;
+            height: 550px;
+            overflow: visible;
+        }
+        .c1{/*轮播图*/
+            background-color: #fff;
+            cursor: pointer;
+            width: 384px;
+            height: 531px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: inline-block;
+            position: absolute;
+            margin-top: 10px;
+        }
+        .c1:hover{
+            box-shadow: 0 0 15px #999;
+        }
+        .c1:nth-child(1){/*子轮播图*/
+            transform: translateX(10%);
+        }
+        .c1:nth-child(2){
+            transform: translateX(120%);
+        }
+        .c1:nth-child(3){
+            transform: translateX(230%);
+        }
+        .c1:nth-child(4){
+            transform: translateX(340%);
+        }
+        .c1:nth-child(5){
+            transform: translateX(450%);
+        }
+        .c1:nth-child(6){
+            transform: translateX(560%);
+        }
+        .picture1{/*大背景图（上面的）*/
+            height: 200px;
+            width: 384px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: center center;
+            background-size: cover;
+            transition: background-size 1.5s ease-out,background-size 1.5s ease-out;
+        }
+        .picture2{/*中间的小图*/
+            width: 240px;
+            height: 48px;
+            position: absolute;
+            top:40%;
+            left: 5%;
+            background-position: 0 50%;
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+            height: 10%;
+        }
+        .font{/*文字层*/
+            display: block;
+            font-family: PingFangSC-Medium;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 45px;
+            margin-top: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        .fist{/*鼠标进入前显示的文字*/
+            font-family: PingFangSC-Medium;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 45px;
+            margin-top: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            /*margin-left: 15px;*/
+            position: absolute;
+            top: 50%;
+        }
+        .end{/*鼠标进入后显示的文字父级div*/
+            position: absolute;
+            top: 50%;
+            left: 1%;
+        }
+        .end1{
+            font-family: PingFangSC-Medium;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 28px;
+            margin-bottom: 8px;
+            padding-top: 15px;
+            margin-left: 15px;
+        }
+        .end2{
+            color: #171a1d;
+            font-size: 18px;
+            line-height: 32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            margin-left: 15px;
+        }
+        .lianjie {/*超链接存放的div*/
+            width: 300px;
+            font-size: 20px;
+        rgb(0, 127, 255);
+            color: #0089ff;
+            display: flex;
+            line-height: 30px;
+            white-space: nowrap;
+            position: absolute;
+            top: 90%;
+        }
+        .btm{/*最下面那两个图标的父级div*/
+            width: 100%;
+            height: 44px;
+            position: absolute;
+            margin-top: 20px;
+            left: 0;
+        }
+        .btm_left{
+            position: relative;
+            align-items: center;
+            display: inline-block;
+            left: 48%;
+        }
+        .btm_right{
+            position: relative;
+            left: calc(48% + 20px);
+            align-items: center;
+            display: inline-block;
+        }
+    </style>
+    <!--轮播图0--大图1.png 小图2.png
+    轮播图1--大图3.png 小图12.png
+    轮播图2--大图5.png 小图4.png
+    轮播图3--大图7.png 小图6.png
+    轮播图4--大图8.png 小图9.png
+    轮播图5--大图10.png 小图11.png
+    -->
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header><div class="Title" >客户案例</div></el-header>
+        <el-main>
+            <div class="lunbotu-bottom">
+                <div class="lunbotu" v-bind:style="{transform:'translateX('+(-slideIndex * 15) + '%'+')'}">
+                    <el-row gutter="10">
+                        <el-col span="4">
+                            <div class="c1" @mouseover="zoomIn0" @mouseout="zoomOut0">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[0]})`,transform: transformStyle0,backgroundSize:bgSize0}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2"  :style="{ 'background-image': `url(${images[1]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[0]" v-show="current0 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[1]" v-show="current0 === 2"></div>
+                                                <div class="end2" v-html="texts[2]" v-show="current0 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                            <div class="c1" @mouseover="zoomIn1" @mouseout="zoomOut1">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[2]})`,transform: transformStyle1,backgroundSize:bgSize1}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2" :style="{ 'background-image': `url(${images[3]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[3]" v-show="current1 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[4]" v-show="current1 === 2"></div>
+                                                <div class="end2" v-html="texts[5]" v-show="current1 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                            <div class="c1" @mouseover="zoomIn2" @mouseout="zoomOut2">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[5]})`,transform: transformStyle2,backgroundSize:bgSize2}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2" :style="{ 'background-image': `url(${images[4]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[6]" v-show="current2 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[7]" v-show="current2 === 2"></div>
+                                                <div class="end2" v-html="texts[8]" v-show="current2 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                            <div class="c1" @mouseover="zoomIn3" @mouseout="zoomOut3">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[7]})`,transform: transformStyle3,backgroundSize:bgSize3}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2" :style="{ 'background-image': `url(${images[6]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[9]" v-show="current3 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[10]" v-show="current3 === 2"></div>
+                                                <div class="end2" v-html="texts[11]" v-show="current3 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                            <div class="c1" @mouseover="zoomIn4" @mouseout="zoomOut4">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[8]})`,transform: transformStyle4,backgroundSize:bgSize4}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2" :style="{ 'background-image': `url(${images[9]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[12]" v-show="current4 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[13]" v-show="current4 === 2"></div>
+                                                <div class="end2" v-html="texts[14]" v-show="current4 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                            <div class="c1" @mouseover="zoomIn5" @mouseout="zoomOut5">
+                                <el-container>
+                                    <el-header>
+                                        <div class="picture1"  :style="{ 'background-image': `url(${images[10]})`,transform: transformStyle5,backgroundSize:bgSize5}"></div>
+                                    </el-header>
+                                    <el-main>
+                                        <div class="picture2" :style="{ 'background-image': `url(${images[11]})` }"></div>
+                                        <div class="font">
+                                            <div class="fist" v-html="texts[15]" v-show="current5 === 1"></div>
+                                            <div class="end">
+                                                <div class="end1" v-html="texts[16]" v-show="current5 === 2"></div>
+                                                <div class="end2" v-html="texts[17]" v-show="current5 === 2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="lianjie" v-for="(icon, index) in icons" :key="index" @mouseenter="showIcon(index, true)" @mouseleave="showIcon(index, false)"><a class="lianjie">了解更多<span><i :class="iconClass(index)"></i></span></a></div>
+                                    </el-main>
+                                </el-container>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
+        </el-main>
+        <el-footer>
+            <div class="btm">
+                <div class="btm_left">
+                    <a><el-button icon="el-icon-arrow-left" circle plain="false" v-on:click="slideLeft" :disabled="isLeftDisabled"></el-button></a>
+                </div>
+                <div class="btm_right">
+                    <a><el-button icon="el-icon-arrow-right" circle plain="false" v-on:click="slideRight" :disabled="isRightDisabled"></el-button></a>
+                </div>
+            </div>
+        </el-footer>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+          images: ["picture_8/1.png", "picture_8/2.png", "picture_8/3.png", "picture_8/12.png", "picture_8/5.png", "picture_8/4.png", "picture_8/6.png", "picture_8/7.png", "picture_8/9.png", "picture_8/8.png", "picture_8/11.png", "picture_8/10.png"],
+          texts:["钉钉助力盒马<br>极致生鲜", "零售｜2000人以上", "盒马力求让顾客足不出户就可以享受到世界美味。现在通过钉钉，盒马员工提高了工作协同效率。钉钉和盒马，两者对于工作高效的追求非常契合。",
+                 "后疫情时代下<br>新零售的高效管理","零售｜1000-2000人","高频流动的门店管理问题如何通过钉钉解决。",
+              "深耕'耳朵经济'，<br>打造高效核心团队","零售 ｜ 2000人以上","喜马拉雅选择钉钉作为公司的工作平台，通过为产品、研发、运营等部门带来的新协同工作方式，将开发迭代周期缩短三分之二，切实有效地提升了研发效能。",
+              "钉钉赋能酒店管理的升<br>级变革","连锁酒店 ｜2000人以上","钉钉通过“数字化”解决运营中的“痛”，有效解决了酒店行业不得不面临管理的“难”、成本控制上的“难”",
+              "打造数字化透明工厂，<br>传统企业数字转型的新思路","制造业｜2000人以上","柳钢集团在使用钉钉后，致力为设备赋能赋智，实现新突破，打开新局面，力争在数字化建设道路上更进一步！",
+              "开辟数字化快车道，<br>激发险企组织力跃迁","保险｜2000人以上","通过全面部署钉钉，快速发展中的信泰保险驶上数字化快车道，组织执行力和协同效能强势跃迁。"
+          ],
+          zoom0:1,
+          zoom1:1,
+          zoom2:1,
+          zoom3:1,
+          zoom4:1,
+          zoom5:1,
+          bgSize0:"100%",
+          bgSize1:"100%",
+          bgSize2:"100%",
+          bgSize3:"100%",
+          bgSize4:"100%",
+          bgSize5:"100%",
+          current0: 1,
+          current1:1,
+          current2: 1,
+          current3:1,
+          current4: 1,
+          current5:1,
+          icons: [
+              { icon1: true, icon2: false },
+          ],
+          slideIndex: 0,
+          slideCount:3,
+          isLeftDisabled: true,
+          isRightDisabled: false,
+      };
+    },
+      computed:{
+          iconClass(){
+              return function (index) {
+                  return this.icons[index].icon2 ?  'el-icon-right':'el-icon-arrow-right';
+              }
+          },
+        transformStyle0() {
+            return {
+                transform: `scale(${this.zoom0})`,
+                'background-size': this.bgSize0,
+            }
+        },
+          transformStyle1() {
+              return {
+                  transform: `scale(${this.zoom1})`,
+                  'background-size': this.bgSize1,
+              }
+          },
+          transformStyle2() {
+              return {
+                  transform: `scale(${this.zoom2})`,
+                  'background-size': this.bgSize2,
+              }
+          },
+          transformStyle3() {
+              return {
+                  transform: `scale(${this.zoom3})`,
+                  'background-size': this.bgSize3,
+              }
+          },
+          transformStyle4() {
+              return {
+                  transform: `scale(${this.zoom4})`,
+                  'background-size': this.bgSize4,
+              }
+          },
+          transformStyle5() {
+              return {
+                  transform: `scale(${this.zoom5})`,
+                  'background-size': this.bgSize5,
+              }
+          },
+      },
+    methods: {
+      zoomIn0(){
+          this.zoom0=1.2;
+          this.bgSize0='110%';
+          this.current0 = 2;
+      },
+        zoomOut0(){
+            this.zoom0=1;
+            this.bgSize0='100%';
+            this.current0 = 1;
+    },
+        zoomIn1(){
+            this.zoom1=1.2;
+            this.bgSize1='110%';
+            this.current1 = 2;
+        },
+        zoomOut1(){
+            this.zoom1=1;
+            this.bgSize1='100%';
+            this.current1 = 1;
+        },
+        zoomIn2(){
+            this.zoom2=1.2;
+            this.bgSize2='110%';
+            this.current2 = 2;
+        },
+        zoomOut2(){
+            this.zoom2=1;
+            this.bgSize2='100%';
+            this.current2 = 1;
+        },
+        zoomIn3(){
+            this.zoom3=1.2;
+            this.bgSize3='110%';
+            this.current3 = 2;
+        },
+        zoomOut3(){
+            this.zoom3=1;
+            this.bgSize3='100%';
+            this.current3 = 1;
+        },
+        zoomIn4(){
+            this.zoom4=1.2;
+            this.bgSize4='110%';
+            this.current4 = 2;
+        },
+        zoomOut4(){
+            this.zoom4=1;
+            this.bgSize4='100%';
+            this.current4 = 1;
+        },
+        zoomIn5(){
+            this.zoom5=1.2;
+            this.bgSize5='110%';
+            this.current5 = 2;
+        },
+        zoomOut5(){
+            this.zoom5=1;
+            this.bgSize5='100%';
+            this.current5 = 1;
+        },
+        showIcon(index, isIcon2) {
+            this.icons[index].icon1 = !isIcon2;
+            this.icons[index].icon2 = isIcon2;
+        },
+        slideLeft: function() {
+            this.slideIndex--;
+            this.isLeftDisabled = this.slideIndex === 0;
+            this.isRightDisabled = false;
+        },
+        slideRight: function() {
+            this.slideIndex++;
+            this.isLeftDisabled = false;
+            this.isRightDisabled = this.slideIndex === this.slideCount;
+        },
+        created: function() {
+            this.isLeftDisabled = true;
+            this.isRightDisabled = false;
+        }
+    }
+  });
+</script>
+</html>

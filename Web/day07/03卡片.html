@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <style>
+        .c1:hover{
+            transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+            /*transform: rotateX(180deg);*/
+            transform: rotateY(180deg);
+            /*transform: rotateZ(180deg);*/
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-row gutter="20">
+        <el-col span="4" v-for="item in 6">
+            <el-card class="c1"><h1>{{item}}</h1></el-card>
+            <el-card class="c1"><img src="../day01/2.jpg" alt=""></el-card>
+        </el-col>
+    </el-row>
+    <el-card style="width: 400px;height: 300px;margin: 0 auto">
+        <el-form label-width="60px">
+            <el-form-item label="用户名">
+                <el-input type="text" placeholder="请输入用户名" v-model="user.username"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+                <el-input type="password" placeholder="请输入密码" v-model="user.password"></el-input>
+            </el-form-item>
+        </el-form>
+    </el-card>
+    <el-card>
+        <el-form>
+            <el-container>
+                <el-header> <h1>达内后台管理系统</h1></el-header>
+                <el-main>
+                    <el-container>
+                        <el-aside width="200px">
+                            <template>
+                                <el-menu :default-openeds="['0','1']">
+                                    <el-submenu index="0" v-if="showSubMenu">
+                                        <template slot="title">
+                                            <i class="el-icon-location"></i>
+                                            <span>员工管理</span>
+                                        </template>
+                                        <el-menu-item index="2">员工列表</el-menu-item>
+                                        <el-menu-item index="3">添加员工</el-menu-item>
+                                    </el-submenu>
+                                    <el-submenu index="1">
+                                        <template slot="title">
+                                            <i class="el-icon-menu"></i>
+                                            <span>部门管理</span>
+                                        </template>
+                                        <el-menu-item index="5">部门列表</el-menu-item>
+                                        <el-menu-item index="6">添加部门</el-menu-item>
+                                    </el-submenu>
+                                </el-menu>
+                            </template>
+                        </el-aside>
+                        <el-main>
+                            <el-container>
+                                <el-header  style="margin: 0 auto;border: red 1px solid"><h1>员工列表</h1></el-header>
+                                <el-main style="border: red 1px solid;"></el-main>
+                            </el-container>
+                        </el-main>
+                    </el-container>
+                </el-main>
+            </el-container>
+        </el-form>
+    </el-card>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        user:{
+          username:'',
+          password:''
+        },
+        showSubMenu:true
+      }
+    },
+    methods:{
+
+    }
+  })
+</script>
+</html>

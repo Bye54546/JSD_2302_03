@@ -1,0 +1,161 @@
+
+.el-main::-webkit-scrollbar {
+    display: none;
+}
+#app {/*整个页面*/
+    background-color: #ebedf0;
+    margin: 0 auto;
+    min-width: 750px;
+    height: 732px;
+}
+.Title{/*标题*/
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    min-width: 750px;
+    position: relative;
+    text-align: center;
+    white-space: pre-wrap;
+    font-size: 40px;
+    color: rgb(23, 26, 29);
+    margin-bottom: 32px;
+}
+.lunbotu-bottom{/*轮播图底部div*/
+    max-width: 1200px;
+    height: 534px;
+}
+.lunbotu{/*轮播图存放得父级div*/
+    min-width: 2600px;
+    height: 550px;
+    overflow: visible;
+}
+.c1{/*轮播图*/
+    background-color: #fff;
+    cursor: pointer;
+    width: 384px;
+    height: 531px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+    margin-top: 10px;
+}
+.c1:hover{
+    box-shadow: 0 0 15px #999;
+}
+.c1:nth-child(1){/*子轮播图*/
+    transform: translateX(10%);
+}
+.c1:nth-child(2){
+    transform: translateX(120%);
+}
+.c1:nth-child(3){
+    transform: translateX(230%);
+}
+.c1:nth-child(4){
+    transform: translateX(340%);
+}
+.c1:nth-child(5){
+    transform: translateX(450%);
+}
+.c1:nth-child(6){
+    transform: translateX(560%);
+}
+.picture1{/*大背景图（上面的）*/
+    height: 200px;
+    width: 384px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center center;
+    background-size: cover;
+    transition: background-size 1.5s ease-out,background-size 1.5s ease-out;
+}
+.picture2{/*中间的小图*/
+    width: 240px;
+    height: 48px;
+    position: absolute;
+    top:40%;
+    left: 5%;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: 10%;
+}
+.font{/*文字层*/
+    display: block;
+    font-family: PingFangSC-Medium;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.fist{/*鼠标进入前显示的文字*/
+    font-family: PingFangSC-Medium;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    /*margin-left: 15px;*/
+    position: absolute;
+    top: 50%;
+}
+.end{/*鼠标进入后显示的文字父级div*/
+    position: absolute;
+    top: 50%;
+    left: 1%;
+}
+.end1{
+    font-family: PingFangSC-Medium;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 8px;
+    padding-top: 15px;
+    margin-left: 15px;
+}
+.end2{
+    color: #171a1d;
+    font-size: 18px;
+    line-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-left: 15px;
+}
+.lianjie {/*超链接存放的div*/
+    width: 300px;
+    font-size: 20px;
+rgb(0, 127, 255);
+    color: #0089ff;
+    display: flex;
+    line-height: 30px;
+    white-space: nowrap;
+    position: absolute;
+    top: 90%;
+}
+.btm{/*最下面那两个图标的父级div*/
+    width: 100%;
+    height: 44px;
+    position: absolute;
+    margin-top: 20px;
+    left: 0;
+}
+.btm_left{
+    position: relative;
+    align-items: center;
+    display: inline-block;
+    left: 48%;
+}
+.btm_right{
+    position: relative;
+    left: calc(48% + 20px);
+    align-items: center;
+    display: inline-block;
+}
