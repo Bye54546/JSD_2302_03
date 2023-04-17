@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+  <el-page-header
+          style="background-color: #0096dc;color: white;line-height: 60px"
+          @back="goBack()" content="添加轮播图页面"></el-page-header>
+  <el-upload
+          action="https://jsonplaceholder.typicode.com/posts/"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove">
+    <i class="el-icon-plus"></i>
+  </el-upload>
+  <el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+  </el-dialog>
+  <el-button type="success">开始上传</el-button>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+ let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        dialogImageUrl: '',
+        dialogVisible: false
+      }
+    },
+   methods:{
+     goBack(){
+       history.back();//返回上一页面
+     },
+     handleRemove(file, fileList) {
+       console.log(file, fileList);
+     },
+     handlePictureCardPreview(file) {
+       this.dialogImageUrl = file.url;
+       this.dialogVisible = true;
+     }
+   }
+  })
+</script>
+</html>

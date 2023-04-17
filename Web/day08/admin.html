@@ -1,66 +1,108 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
 </head>
 <body>
 <div id="app">
+  <el-container>
+    <el-header style="background-color: #0096dc">
+      <h1 style="color: white;font-size: 22px">
+        CoolShark商城后台管理系统
+        <span style="float: right">
+          欢迎XXX回来
+          <a href="">退出登录</a>
+        </span>
+      </h1>
+    </el-header>
     <el-container>
-        <el-header style="background-color: #0096dc">
-        <h1 style="color: white;font-size: 22px">
-            CoolShark商城后台管理系统
-            <span style="float: right">欢迎回来
-            <a href="">退出登录</a>
-            </span>
-        </h1>
-        </el-header>
-        <el-container>
-            <el-aside width="200px" style="overflow: hidden">
-                <el-menu>
-                <el-submenu index="1">
-                    <template>
-                    <template slot="title"><i class="el-icon-s-flag"></i><span>分类管理</span></template>
-                    </template>
-                    <el-menu-item index="1-1">分类列表</el-menu-item>
-                    <el-menu-item index="1-2">添加分类</el-menu-item>
-                </el-submenu>
-                    <el-submenu index="2">
-                        <template>
-                            <template slot="title"><i class="el-icon-s-flag"></i><span>轮播图管理</span></template>
-                        </template>
-                        <el-menu-item index="2-1">轮播图列表</el-menu-item>
-                        <el-menu-item index="2-2">添加轮播图</el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="3">
-                        <template>
-                            <template slot="title"><i class="el-icon-s-flag"></i><span>商品管理</span></template>
-                        </template>
-                        <el-menu-item index="3-1">商品列表</el-menu-item>
-                        <el-menu-item index="3-2">添加商品</el-menu-item>
-                    </el-submenu>
-                </el-menu>
-            </el-aside>
-            <el-main> <!--分类表格开始-->
-                <el-table :data="categoryArr">
-                    <el-table-column label="序号" type="index"></el-table-column>
-                    <el-table-column label="分类名称" prop="name"></el-table-column>
-                    <el-table-column label="操作">
-                        <template slot-scope="scope">
-                            <el-button
-                                    size="mini"
-                                    type="danger"
-                                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                        </template>
-                    </el-table-column>
-                </el-table>
-                <!--分类表格结束--></el-main>
-        </el-container>
+      <el-aside width="200px" style="overflow: hidden">
+        <el-menu @select="handleSelect">
+          <el-submenu index="1">
+            <template slot="title"><i class="el-icon-s-flag"></i>
+              <span>分类管理</span>
+            </template>
+            <el-menu-item index="1-1">分类列表</el-menu-item>
+            <el-menu-item index="1-2">添加分类</el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title"><i class="el-icon-picture"></i>
+              <span>轮播图管理</span>
+            </template>
+            <el-menu-item index="2-1">轮播图列表</el-menu-item>
+            <el-menu-item index="2-2">添加轮播图</el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title"><i class="el-icon-shopping-cart-2"></i>
+              <span>商品管理</span>
+            </template>
+            <el-menu-item index="3-1">商品列表</el-menu-item>
+            <el-menu-item index="3-2">添加商品</el-menu-item>
+          </el-submenu>
+        </el-menu>
+
+      </el-aside>
+      <el-main>
+        <!--分类表格开始-->
+        <el-table v-if="currentIndex=='1-1'" :data="categoryArr">
+          <el-table-column label="序号" type="index"></el-table-column>
+          <el-table-column label="分类名称" prop="name"></el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button
+                      size="mini"
+                      type="danger"
+                      @click="handleCategoryDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <!--分类表格结束-->
+        <!--轮播图表格开始-->
+        <el-table v-if="currentIndex=='2-1'" :data="bannerArr">
+          <el-table-column label="序号" type="index"></el-table-column>
+          <el-table-column label="轮播图" width="100px">
+            <template slot-scope="scope">
+             <img :src="scope.row.url" width="100%">
+            </template>
+          </el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button
+                      size="mini"
+                      type="danger"
+                      @click="handleBannerDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <!--轮播图表格结束-->
+        <!--商品表格开始-->
+        <el-table v-if="currentIndex=='3-1'" :data="productArr">
+          <el-table-column label="序号" type="index"></el-table-column>
+          <el-table-column label="商品标题" prop="title"></el-table-column>
+          <el-table-column label="商品价格" prop="price"></el-table-column>
+          <el-table-column label="商品原价" prop="oldPrice"></el-table-column>
+          <el-table-column label="商品库存" prop="saleCount"></el-table-column>
+          <el-table-column label="商品图片" width="100px">
+            <template slot-scope="scope">
+              <img :src="scope.row.url" width="100%">
+            </template>
+          </el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button
+                      size="mini"
+                      type="danger"
+                      @click="handleProductDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <!--商品表格结束-->
+      </el-main>
     </el-container>
+  </el-container>
+
 </div>
 </body>
 <!-- import Vue before Element -->
@@ -68,148 +110,56 @@
 <!-- import JavaScript -->
 <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
 <script>
-  let v = new Vue({
+ let v = new Vue({
     el: '#app',
     data: function() {
       return {
-          productArr: [{
-              title: "森马牛仔裤女宽松慢跑裤运动风2022春季新款显瘦束脚长裤复古",
-              price: 233,
-              oldPrice: 598,
-              url: "imgs/a.jpg",
-              saleCount: 2342
-          },
-              {title: "茵曼马甲连衣裙两件套春季新款娃娃领色织格长袖背心裙套装", price: 233, oldPrice: 598, url: "imgs/b.jpg", saleCount: 2342},
-              {
-                  title: "雪中飞墨绿色短袖t恤女夏2022新款纯棉半袖打底体恤夏季上衣潮ins",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/c.jpg",
-                  saleCount: 2342
-              },
-              {
-                  title: "【佟丽娅同款】鸭鸭明星同款羽绒服2021年冬季新款时尚连帽外套冬",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/d.jpg",
-                  saleCount: 2342
-              },
-              {
-                  title: "BEASTER小恶魔鬼脸明星同款夹克毛绒保暖加厚字母印花宽松外套ins",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/e.jpg",
-                  saleCount: 2342
-              },
-              {
-                  title: "香影毛呢外套女中长款2021年冬季新款气质韩版娃娃领紫色呢子大衣",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/f.jpg",
-                  saleCount: 2342
-              },
-              {title: "SEMIR森马商场同款打底针织毛衣纯色高领新品显瘦", price: 233, oldPrice: 598, url: "imgs/g.jpg", saleCount: 2342},
-              {title: "美特斯邦威女MTEE 贺岁系列中长款风衣736598", price: 233, oldPrice: 598, url: "imgs/h.jpg", saleCount: 2342},
-              {
-                  title: "imone2021秋款黑色小西装外套女韩版学生宽松学院风外套jk外套",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/i.jpg",
-                  saleCount: 2342
-              },
-              {title: "BEASTER 小恶魔明星同款保暖长袖街头潮流连帽卫衣情侣上衣", price: 233, oldPrice: 598, url: "imgs/j.jpg", saleCount: 2342},
-              {
-                  title: "憨厚皇后100%绵羊皮2021秋海宁真皮皮衣女长款修身绵羊皮风衣外",
-                  price: 233,
-                  oldPrice: 598,
-                  url: "imgs/k.jpg",
-                  saleCount: 2342
-              },
-              {title: "美特斯邦威高腰牛仔裤女宽松小脚新款春秋彩色潮流女士牛仔", price: 233, oldPrice: 598, url: "imgs/a.jpg", saleCount: 2342}],
-          categoryArr:[{
-              title:"女装",
-              url:"imgs/a.jpg"
-          },
-              {
-                  title:"男装",
-                  url:"imgs/b.jpg"
-              },
-              {
-                  title:"鞋子",
-                  url:"imgs/c.jpg"
-              },
-              {
-                  title:"箱包",
-                  url:"imgs/d.jpg"
-              },
-              {
-                  title:"配饰",
-                  url:"imgs/e.jpg"
-              },
-              {
-                  title:"美妆",
-                  url:"imgs/f.jpg"
-              },
-              {
-                  title:"家居",
-                  url:"imgs/g.jpg"
-              },
-              {
-                  title:"数码",
-                  url:"imgs/h.jpg"
-              },
-              {
-                  title:"母婴",
-                  url:"imgs/i.jpg"
-              },
-              {
-                  title:"食品",
-                  url:"imgs/j.jpg"
-              },
-              {
-                  title:"其他",
-                  url:"imgs/k.jpg"
-              }
-          ],
-          bannerArr:[{
-              url:"imgs/a.jpg"
-          },
-              {
-                  url:"imgs/b.jpg"
-              },
-              {
-                  url:"imgs/c.jpg"
-              },
-              {
-                  url:"imgs/d.jpg"
-              },
-              {
-                  url:"imgs/e.jpg"
-              },
-              {
-                  url:"imgs/f.jpg"
-              },
-              {
-                  url:"imgs/g.jpg"
-              },
-              {
-                  url:"imgs/h.jpg"
-              },
-              {
-                  url:"imgs/i.jpg"
-              },
-              {
-                  url:"imgs/j.jpg"
-              },
-              {
-                  url:"imgs/k.jpg"
-              }
-          ]
-      }
-      },
-    methods: {
-    }
-    })
+        currentIndex:"1-1",
+        productArr:[{title:"森马牛仔裤女宽松慢跑裤运动风2022春季新款显瘦束脚长裤复古",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342},
+          {title:"茵曼马甲连衣裙两件套春季新款娃娃领色织格长袖背心裙套装",price:233,oldPrice:598,url:"imgs/b.jpg",saleCount:2342},
+          {title:"雪中飞墨绿色短袖t恤女夏2022新款纯棉半袖打底体恤夏季上衣潮ins",price:233,oldPrice:598,url:"imgs/c.jpg",saleCount:2342},
+          {title:"【佟丽娅同款】鸭鸭明星同款羽绒服2021年冬季新款时尚连帽外套冬",price:233,oldPrice:598,url:"imgs/d.jpg",saleCount:2342},
+          {title:"BEASTER小恶魔鬼脸明星同款夹克毛绒保暖加厚字母印花宽松外套ins",price:233,oldPrice:598,url:"imgs/e.jpg",saleCount:2342},
+          {title:"香影毛呢外套女中长款2021年冬季新款气质韩版娃娃领紫色呢子大衣",price:233,oldPrice:598,url:"imgs/f.jpg",saleCount:2342},
+          {title:"SEMIR森马商场同款打底针织毛衣纯色高领新品显瘦",price:233,oldPrice:598,url:"imgs/g.jpg",saleCount:2342},
+          {title:"美特斯邦威女MTEE 贺岁系列中长款风衣736598",price:233,oldPrice:598,url:"imgs/h.jpg",saleCount:2342},
+          {title:"imone2021秋款黑色小西装外套女韩版学生宽松学院风外套jk外套",price:233,oldPrice:598,url:"imgs/i.jpg",saleCount:2342},
+          {title:"BEASTER 小恶魔明星同款保暖长袖街头潮流连帽卫衣情侣上衣",price:233,oldPrice:598,url:"imgs/j.jpg",saleCount:2342},
+          {title:"憨厚皇后100%绵羊皮2021秋海宁真皮皮衣女长款修身绵羊皮风衣外",price:233,oldPrice:598,url:"imgs/k.jpg",saleCount:2342},
+          {title:"美特斯邦威高腰牛仔裤女宽松小脚新款春秋彩色潮流女士牛仔",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342}],
+        categoryArr:[{id:1,name:"精彩活动"},{id:2,name:"精品女装"},
+          {id:3,name:"品牌男装"},{id:4,name:"母婴产品"}],
+        bannerArr:[{id:1,url:"imgs/b1.jpg"},{id:2,url:"imgs/b2.jpg"},
+          {id:3,url:"imgs/b3.jpg"}]
 
+      }
+    },
+   methods:{
+     handleSelect(key,keyPath){
+       //key就是导航菜单项的index的值
+       if (key=='1-2'){
+         v.$message("添加分类");
+       }else if(key=='2-2'){
+         location.href="insertBanner.html";
+       }else if(key=='3-2'){
+         v.$message("添加商品");
+       }else{//1-1 , 2-1, 3-1
+         v.currentIndex = key;
+       }
+     },
+     handleCategoryDelete(i,c){
+       v.categoryArr.splice(i,1);
+       v.$message.success("成功删除了"+c.name);
+     },
+     handleBannerDelete(i,b){
+       v.bannerArr.splice(i,1);
+       v.$message.success("成功删除了轮播图");
+     },
+     handleProductDelete(i,p){
+       v.productArr.splice(i,1);
+       v.$message.success("成功删除了"+p.title);
+     }
+   }
+  })
 </script>
 </html>
