@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="background-color: hotpink;">工程首页</h1>
+<a href="hello">相对路径</a><!--请求的地址和当前页面所处位置有关-->
+<a href="/hello">绝对路径1</a><!--和页面所处位置无关，/等效当前工程的根路径-->
+<!--一般用于访问站外资源时使用-->
+<a href="http://localhost:8080/hello">绝对路径2</a><!--固定的路径与端口号，更换位置后无法自动更改-->
+<h3>通过form表单发出请求</h3>
+<form action="hello" method="post">
+    <input type="text" name="username" placeholder="请输入用户名">
+    <input type="password" name="password" placeholder="请输入密码">
+    <input type="submit" value="提交">
+</form>
+<a href="/param.html">传参测试1</a>
+<a href="/param2.html">传参测试2</a>
+<a href="/param3.html">传参测试3</a>
+<a href="/bmi.html">身体质量指数测试</a>
+<h3>第三种</h3>
+<form action="/p3">
+    <input type="text" name="name" placeholder="员工姓名">
+    <input type="text" name="sal" placeholder="员工工资">
+    <input type="text" name="job" placeholder="员工工作">
+    <input type="submit" value="添加员工">
+</form>
+</body>
+</html>

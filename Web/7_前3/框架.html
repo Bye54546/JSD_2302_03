@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+  <style>
+    .menuSpan{
+      color: #d8d8d8;
+      font-size: 16px;
+      letter-spacing: 1px;
+      margin-left: 29px;
+      -moz-text-align-last: justify;
+      text-align-last: justify;
+      width: 68px;
+      display: inline-block;
+    }
+    .bottom{
+
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <el-container style="top: -10px;position: relative">
+    <el-header style="background-color: white;width: 1216px;height: 60px;left: 214px;padding: 0;position: absolute;
+box-shadow: 6px 0 6px #827f7f;">
+      <h1 style="color: #000000;font-size: 22px">
+        大脸猫宠物管理系统
+        <span style="float: right;margin-right: 40px">
+          欢迎回来
+        </span>
+      </h1>
+    </el-header>
+    <el-dropdown style="width: 221px;height: 126px;background-color: #26272d;border-top-right-radius: 54px;left:-7px">
+      <div></div>
+    </el-dropdown>
+    <el-container>
+      <el-aside width="221px"  style="overflow: visible;height: 100%;">
+        <el-menu @select="handlerSelect" style="background-color: #26272d;height: 645px;left:-7px">
+          <!--          微信商城-->
+          <el-submenu index="7">
+            <template slot="title">
+              <i class="el-icon-s-flag"></i>
+              <span class="menuSpan">微信商城</span>
+            </template>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-container>
+        <el-main>
+
+
+
+
+          
+        </el-main>
+      </el-container>
+    </el-container>
+  </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+
+      }
+    },
+    methods:{
+
+      handlerSelect(key,keyPath){
+
+      },
+    }
+  })
+</script>
+</html>
