@@ -1,9 +1,7 @@
 package cn.tedu.bt3.mapper;
 
 import cn.tedu.bt3.entity.Product;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +12,14 @@ import java.util.List;
 public interface ProductMapper {
     @Insert("insert into products value(null,#{title},#{price},#{num})")
     int insert(Product product);
-//    执行insert语句后，会自动将id的值赋值给product对象
-    @Select("select * from products where id=#{id}")
+
+    //    执行insert语句后，会自动将id的值赋值给product对象
+    @Select("select * from products")
     List<Product> select();
+
+    @Update("update product set title=#{title},price=#{price},num=#{num} where id=#{id}")
+    int update(Product product);
+
+    @Delete("delete from product where id=#{id}")
+    int deleteById(Product product);
 }

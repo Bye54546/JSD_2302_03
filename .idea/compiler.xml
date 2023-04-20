@@ -9,6 +9,7 @@
         <module name="JSD_2302_03" />
         <module name="boot01" />
         <module name="bt3" />
+        <module name="bt3mf" />
         <module name="bt" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
       <module name="bt" options="-parameters" />
       <module name="bt2" options="-parameters" />
       <module name="bt3" options="-parameters" />
+      <module name="bt3mf" options="-parameters" />
       <module name="d3" options="-parameters" />
     </option>
   </component>
