@@ -11,6 +11,7 @@
         <module name="bt3" />
         <module name="bt3mf" />
         <module name="bt" />
+        <module name="boot4" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="boot01" options="-parameters" />
+      <module name="boot4" options="-parameters" />
       <module name="bt" options="-parameters" />
       <module name="bt2" options="-parameters" />
       <module name="bt3" options="-parameters" />
