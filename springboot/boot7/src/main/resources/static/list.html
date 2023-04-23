@@ -16,11 +16,14 @@
             <th>商品库存</th>
             <th>操作</th>
         </tr>
-       <tr v-for="item in arr">
-           <td>{{item.id}}</td>
-           <td>{{item.name}}</td>
-           <td>{{item.price}}</td>
-           <td>{{item.num}}</td>
+        <tr v-for="item in arr">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.num}}</td>
+            <!--禁用跳转功能-->
+            <td><a href="javascript:void(0)" @click="del(p.id)">删除</a></td>
+        </tr>
     </table>
 </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -36,9 +39,17 @@
         //页面加载完毕后执行
         created: function () {
             axios.get("/select").then(function (response) {
+                //axios框架当发现
                 v.arr = response.data;
-            })
-        }
+            });
+        },
+    del(){
+            if (confirm("确定删除？")){
+                axios.post("/delete").then(function () {
+                    location.reload();/*刷新页面*/
+                })
+            }
+    }
     });
 </script>
 </body>

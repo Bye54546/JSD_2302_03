@@ -2,7 +2,6 @@ package cn.tedu.bt3mf;
 
 import cn.tedu.bt3mf.entity.Product;
 import cn.tedu.bt3mf.mapper.ProductMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

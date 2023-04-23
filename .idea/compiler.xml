@@ -8,16 +8,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bt3" />
         <module name="bt3mf" />
-        <module name="bt" />
         <module name="JSD_2302_03" />
         <module name="boot01" />
         <module name="boot4" />
-        <module name="boot05" />
         <module name="boot7" />
+        <module name="boot05" />
         <module name="boot6" />
+        <module name="boot02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="bt" target="1.8" />
       <module name="bt2" target="1.8" />
       <module name="d3" target="1.8" />
     </bytecodeTargetLevel>
@@ -25,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="boot01" options="-parameters" />
+      <module name="boot02" options="-parameters" />
       <module name="boot05" options="-parameters" />
       <module name="boot4" options="-parameters" />
       <module name="boot6" options="-parameters" />

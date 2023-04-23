@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/boot01/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/boot05/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/boot4/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/boot6/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/boot7/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bt/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bt3/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bt3mf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot01/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot05/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot05/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot4/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot4/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot6/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot6/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot7/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot7/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt3/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt3mf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/bt3mf/src/main/resources" charset="UTF-8" />
   </component>
 </project>
