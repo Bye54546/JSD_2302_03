@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h1>身高体重指数计算</h1>
+  <input type="text" placeholder="请输入身高(米)" v-model="h">
+    <input type="text" placeholder="请输入体重(公斤)" v-model="w">
+    <input type="button" value="计算" @click="bmi()">
+  <h3>结果：{{result}}</h3>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+          result:"",
+          h:"",
+          w:""
+        },
+        methods:{
+          bmi(){
+            axios.get("/bmi?h="+v.h+"&w="+v.w).then(function (response) {
+                switch (response.data){
+                    case 1:
+                        v.result = "过轻";
+                        break;
+                    case 2:
+                        v.result = "正常";
+                        break;
+                    case 3:
+                        v.result = "过重";
+                        break;
+                    case 4:
+                        v.result = "肥胖";
+                        break;
+                    case 5:
+                        v.result = "非常肥胖";
+                        break;
+                }
+            })
+          }
+        }
+    })
+</script>
+</body>
+</html>

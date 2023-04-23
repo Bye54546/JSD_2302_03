@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>添加商品</h1>
+    <input type="text" placeholder="商品名称" v-model="products.id">
+    <input type="text" placeholder="商品名称" v-model="products.title">
+    <input type="text" placeholder="商品价格" v-model="products.price">
+    <input type="text" placeholder="商品库存" v-model="products.num">
+    <input type="button" value="添加" @click="insert()">
+    <input type="button" value="删除" @click="del()">
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            products:{
+                title:"",
+                price:"",
+                num:"",
+                id:""
+            }
+        },
+        methods:{
+            insert(){
+                //发出异步post请求
+                axios.post("/insert",v.products).then(function () {
+                    alert("添加成功!");
+                    location.href="/";
+                })
+            },
+            del(){
+                //发出异步post请求
+                axios.post("/delete",v.products).then(function () {
+                    alert("删除成功!");
+                    location.href="/";
+                })
+            },
+            select(){
+                axios.post("/list.html",v.products).then(function () {
+
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
