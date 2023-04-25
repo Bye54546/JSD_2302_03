@@ -17,10 +17,16 @@
         <option value="$PROJECT_DIR$/springboot/boot6/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/bt/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/bt3/pom.xml" />
-        <option value="$PROJECT_DIR$/springboot/bt3mf/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/boot05/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/boot4/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/boot01/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/bt3mf/pom.xml" />
+        <option value="$PROJECT_DIR$/boot07-1/pom.xml" />
+        <option value="$PROJECT_DIR$/boot08/pom.xml" />
+        <option value="$PROJECT_DIR$/boot09/pom.xml" />
+        <option value="$PROJECT_DIR$/boot091/pom.xml" />
+        <option value="$PROJECT_DIR$/boot10/pom.xml" />
+        <option value="$PROJECT_DIR$/weibo/pom.xml" />
       </list>
     </option>
   </component>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>学生管理系统</h1>
+<div>
+    <input type="text" placeholder="班级名称" v-model="c.name">
+    <input type="text" placeholder="老师姓名" v-model="c.teacherName">
+    <input type="text" placeholder="年级名" v-model="c.gradeLevel">
+    <input type="submit" value="添加" @click="insert()">
+    <table border="1">
+        <caption>班级名称</caption>
+        <tr><th>序号</th><th>班级名</th><th>老师姓名</th><th>年级</th><th>操作</th></tr>
+        <tr v-for="(c,i) in arr">
+            <td>{{i+1}}</td>
+            <td><a :href="'/list.html?id='+c.id">{{c.name}}</a></td>
+            <td>{{c.teacherName}}</td>
+            <td>{{c.gradeLevel}}</td>
+            <td><a href="javascript:void(0)" @click="del(c.id)">删除</a></td>
+        </tr>
+    </table>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            c: {name:"",teacherName:"",gradeLevel:""},
+            arr:[],
+        },
+        methods:{
+            insert(){
+                axios.post("/class/insert",v.c).then(function (response) {
+                    if (response.data==1){
+                        alert("提交成功");
+                    }else {
+                        alert("提交失败");
+                    }
+                    location.reload();
+                })
+            },
+            del(id){
+                if (confirm("是否删除")){
+                    axios.post("/class/deleteById?id="+id).then(function () {
+                        location.reload();
+                    });
+                }
+            }
+        },
+        created:function (){
+            axios.get("/class/select").then(function (response) {
+                v.arr = response.data;
+            })
+        }
+    })
+</script>
+</body>
+</html>

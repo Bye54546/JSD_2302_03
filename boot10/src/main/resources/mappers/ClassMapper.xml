@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.boot10.mapper.ClassMapper">
+    <!--别名解决属性名和字段名不一致的问题-->
+<!--<select id="select" resultType="cn.tedu.boot10.entity.Class">-->
+<!--    select id,class_name name,teacher_name teacherName,grade_level from class-->
+<!--</select>-->
+<!--通过resultMap解决属性名字段不一致的问题-->
+<!--    <resultMap  id="classRM" type="cn.tedu.boot10.entity.Class">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="name" column="class_name"></result>-->
+<!--        <result property="teacherName" column="teacher_name"></result>-->
+<!--        <result property="gradeLevel" column="grade_level"></result>-->
+<!--    </resultMap>-->
+<insert id="insert">
+    insert into class values(null,#{name},#{teacherName},#{gradeLevel})
+</insert>
+    <select id="select" resultType="cn.tedu.boot10.entity.Class">
+        select id,class_name name,teacher_name,grade_level from CLASS
+    </select>
+    <select id="selectById" resultType="cn.tedu.boot10.entity.Class">
+        select id, class_name name, teacher_name, grade_level
+        from CLASS
+        where id=#{id};
+    </select>
+    <delete id="deleteById">
+        delete from class where id=#{id}
+    </delete>
+    <delete id="deleteByIds">
+        DELETE FROM class WHERE id IN(
+        <foreach collection="array" item="id" separator=",">#{id}</foreach>
+        )
+    </delete>
+    <update id="update">
+        update class
+            <set>
+                <if test="name!=null">class_name=#{name},</if>
+                <if test="teacherName!=null">teacher_name=#{teacherName},</if>
+                <if test="gradeLevel!=null">grade_Level=#{gradeLevel},</if>
+            </set>
+        where id=#{id}
+    </update>
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM class
+    </select>
+
+</mapper>

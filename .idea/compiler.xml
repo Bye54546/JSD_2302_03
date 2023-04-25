@@ -8,8 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bt3" />
         <module name="bt3mf" />
+        <module name="boot091" />
+        <module name="boot09" />
+        <module name="boot08" />
+        <module name="weibo" />
+        <module name="boot07-1" />
         <module name="JSD_2302_03" />
         <module name="boot01" />
+        <module name="boot10" />
         <module name="boot4" />
         <module name="boot7" />
         <module name="boot05" />
@@ -18,6 +24,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="boot09-1" target="1.8" />
+      <module name="boot09-2" target="1.8" />
+      <module name="boot7_1" target="17" />
       <module name="bt" target="1.8" />
       <module name="bt2" target="1.8" />
       <module name="d3" target="1.8" />
@@ -28,14 +37,23 @@
       <module name="boot01" options="-parameters" />
       <module name="boot02" options="-parameters" />
       <module name="boot05" options="-parameters" />
+      <module name="boot07-1" options="-parameters" />
+      <module name="boot08" options="-parameters" />
+      <module name="boot09" options="-parameters" />
+      <module name="boot09-1" options="-parameters" />
+      <module name="boot09-2" options="-parameters" />
+      <module name="boot091" options="-parameters" />
+      <module name="boot10" options="-parameters" />
       <module name="boot4" options="-parameters" />
       <module name="boot6" options="-parameters" />
       <module name="boot7" options="-parameters" />
+      <module name="boot7_1" options="-parameters" />
       <module name="bt" options="-parameters" />
       <module name="bt2" options="-parameters" />
       <module name="bt3" options="-parameters" />
       <module name="bt3mf" options="-parameters" />
       <module name="d3" options="-parameters" />
+      <module name="weibo" options="-parameters" />
     </option>
   </component>
 </project>

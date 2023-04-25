@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h1>
+    <input type="text" placeholder="id" v-model="products.id" readonly>
+    <input type="text" placeholder="title" v-model="products.title">
+    <input type="text" placeholder="price" v-model="products.price">
+    <input type="text" placeholder="num" v-model="products.num">
+    <input type="button" value="修改" v-model="update()">
+  </h1>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+          products: {id:"",title:"",price:"",num:""}
+        },
+        methods:{
+            update(){
+                axiso.post("/update",v.products).then(function () {
+                    location.href="/list.html";
+                })
+            }
+        },
+        created:function(){
+            axiso.get("/selectById"+location.search).then(function (response){
+                v.products=response.data;
+            })
+        }
+    })
+</script>
+</body>
+</html>

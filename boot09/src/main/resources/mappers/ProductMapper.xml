@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.boot09.mapper.ProductsMapper">
+    <sql id="selectSQL">
+        select id,title,price,num from products
+    </sql>
+    <insert id="insert">
+        insert into products
+        values (null,#{title},#{price},#{num})
+    </insert>
+    <select id="select" resultType="cn.tedu.boot09.entity.Product">
+        <include refid="selectSQL"></include>
+    </select>
+    <delete id="deleteById">
+        delete from products where id=#{id}
+    </delete>
+    <update id="update">
+        update products set title=#{title},price=#{price},num=#{num} where id=#{id}
+    </update>
+    <select id="selectById" resultType="cn.tedu.boot09.entity.Product">
+        <include refid="selectSQL"></include> where id = #{id}
+    </select>
+    <select id="count" resultType="int">
+        select count(*) from products
+    </select>
+<!--    批量删除1：collection用来设置遍历对象的类型 array代表数组
+        item用来设置遍历对象的每个元素的名称
+    separator用来设置每个元素之间的分隔符
+    foreach标签的内容就是遍历对象的每个元素的值
+-->
+    <delete id="deleteByIds1">
+        delete from products where id in(
+        <foreach collection="array" item="id" separator=",">#{id}</foreach>
+        )
+    </delete>
+<!--    第二种-->
+    <delete id="deleteByIds2">
+        delete from products where id in(
+        <foreach collection="list" item="id" separator=",">#{id}</foreach>
+        )
+    </delete>
+<!--    第三种-->
+    <delete id="deleteByIds3">
+        delete from products where id in(
+        <foreach collection="array" item="id" separator=",">#{id}</foreach>
+        )
+    </delete>
+<!--    动态修改-->
+    <update id="dynamicUpdate">
+        update products
+        <set>
+            <if test="title!=null">title=#{title},</if>
+            <if test="price!=null">price=#{price},</if>
+            <if test="num!=null">num=#{num},</if>
+        </set>
+            where id=#{id}
+    </update>
+</mapper>
