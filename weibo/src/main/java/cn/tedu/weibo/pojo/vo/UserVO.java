@@ -2,14 +2,14 @@ package cn.tedu.weibo.pojo.vo;
 
 public class UserVO {
     private Integer id;
-    private String username;
+    private String nickname;
     private String password;
 
     @Override
     public String toString() {
         return "UserVO{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
@@ -23,11 +23,11 @@ public class UserVO {
     }
 
     public String getUsername() {
-        return username;
+        return nickname;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.nickname = username;
     }
 
     public String getPassword() {

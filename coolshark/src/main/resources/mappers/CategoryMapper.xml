@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.coolshark.mapper.CategoryMapper">
+<select id="select" resultType="cn.tedu.coolshark.pojo.entity.Category">
+    select id,name from Category
+</select>
+</mapper>

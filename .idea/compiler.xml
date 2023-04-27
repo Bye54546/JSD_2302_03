@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bt3" />
         <module name="bt3mf" />
+        <module name="coolshark" />
         <module name="boot091" />
         <module name="boot09" />
         <module name="boot08" />
         <module name="weibo" />
+        <module name="weibotext" />
         <module name="boot07-1" />
         <module name="JSD_2302_03" />
         <module name="boot01" />
@@ -52,8 +54,10 @@
       <module name="bt2" options="-parameters" />
       <module name="bt3" options="-parameters" />
       <module name="bt3mf" options="-parameters" />
+      <module name="coolshark" options="-parameters" />
       <module name="d3" options="-parameters" />
       <module name="weibo" options="-parameters" />
+      <module name="weibotext" options="-parameters" />
     </option>
   </component>
 </project>

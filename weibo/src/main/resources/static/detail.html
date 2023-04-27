@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h1>{{weibo.nickname}}:{{weibo.content}}</h1>
+  <p>发布于：{{weibo.created}}</p>
+  <img v-for="url in weibo.urls.split(',')" :src="url" width="200">
+</div>
+<hr>
+<h2>评论内容</h2>
+<input type="text" placeholder="评论内容...." v-model="comment.content">
+<input type="button" value="发评论" @click="insert()">
+<div v-for="c in arr">
+    <h4>{{c.nickname}}评论说：{{c.content}}</h4>
+    <p style="font-size: 12px">发布于:{{c.created}}</p>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+          weibo: {urls:""},
+          comment:{content:"",weibo:""},
+          arr:{}
+        },
+        methods:{
+          v.comment.weiboId=v.weibo.id;
+          insert(){
+            axios.post("/comment/insert",v.comment).then(function (resp) {
+              if (resp.data==1){
+                location.reload();
+              }else {
+                alert("请先登录");
+                location.href="/login.html";
+              }
+            })
+          }
+        },
+      created: function () {
+        axios.get("/weibo/selectById" + location.search).then(function (response) {
+          v.weibo = response.data;
+        })
+          axios.get("/comment/select"+location.search).then(function (resp) {
+              v.arr=resp.data;
+          })
+      }
+    })
+</script>
+</body>
+</html>

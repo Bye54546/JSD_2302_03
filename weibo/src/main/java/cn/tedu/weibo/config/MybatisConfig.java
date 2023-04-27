@@ -1,4 +1,4 @@
-package config;
+package cn.tedu.weibo.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
