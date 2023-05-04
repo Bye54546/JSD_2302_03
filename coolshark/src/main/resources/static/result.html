@@ -27,7 +27,7 @@
     <el-header height="150px">
       <div style="width: 1200px;margin: 0 auto">
         <img src="imgs/logo.png" style="vertical-align: middle" width="300">
-        <a href="/">首页</a><el-divider direction="vertical"></el-divider>
+        <a href="">首页</a><el-divider direction="vertical"></el-divider>
         <a href="">热点资讯</a><el-divider direction="vertical"></el-divider>
         <a href="">商家入驻</a><el-divider direction="vertical"></el-divider>
         <a href="">社会招聘</a><el-divider direction="vertical"></el-divider>
@@ -37,7 +37,7 @@
       <div style="background-color: #0aa1ed">
         <el-menu @select="handleSelect" style="width: 1200px;margin: 0 auto"
                  mode="horizontal" background-color="#0aa1ed"
-        text-color="#fff" active-text-color="#fff">
+                 text-color="#fff" active-text-color="#fff">
           <el-menu-item v-for="c in categoryArr" :index="c.id">{{c.name}}</el-menu-item>
 
           <div style="float: right;position: relative;top: 10px">
@@ -49,26 +49,6 @@
       </div>
     </el-header>
     <el-main style="width: 1200px;margin: 0 auto">
-        <el-row gutter="20">
-          <el-col span="18">
-            <el-carousel height="300px">
-              <el-carousel-item v-for="b in bannerArr">
-                <img :src="b.url" width="100%" height="100%">
-              </el-carousel-item>
-            </el-carousel>
-          </el-col>
-          <el-col span="6">
-            <el-card>
-              <h3><i class="el-icon-trophy"></i>销量排行</h3>
-              <el-divider></el-divider>
-              <el-table :data="topArr">
-                <el-table-column type="index" label="排名"></el-table-column>
-                <el-table-column prop="title" label="商品标题"></el-table-column>
-                <el-table-column prop="saleCount" label="商品销量"></el-table-column>
-              </el-table>
-            </el-card>
-          </el-col>
-        </el-row>
       <!--商品列表开始-->
       <el-row gutter="20">
         <el-col style="margin: 10px 0" span="6" v-for="p in productArr">
@@ -76,13 +56,13 @@
             <a :href="'/detail.html='+p.id">
               <img :src="p.url" width="100%" height="233px">
             </a>
-              <a :href="'/detail.html='+p.id">
+            <a :href="'/detail.html='+p.id">
               <p style="font-size: 14px;height: 30px">{{p.title}}</p>
             </a>
-              <p>
-                <b>￥{{p.price}}</b> <s>{{p.oldPrice}}</s>
-                <span style="float: right">销量：{{p.saleCount}}件</span>
-              </p>
+            <p>
+              <b>￥{{p.price}}</b> <s>{{p.oldPrice}}</s>
+              <span style="float: right">销量：{{p.saleCount}}件</span>
+            </p>
             </a></el-card>
         </el-col>
       </el-row>
@@ -107,49 +87,53 @@
 <!-- import JavaScript -->
 <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
 <script>
- let v = new Vue({
+  let v = new Vue({
     el: '#app',
     data: function() {
       return {
-        topArr:[],
         productArr:[],
         categoryArr: [],
-        bannerArr: [],
         wd:"",
       }
     },
-   methods:{
-     handleSelect(key,keyPath){
-     // 跳转到结果页面展示相关商品
-       location.href = "/result.html?id="+key;
-     },
-     search(){
-       if(v.wd.trim()==""){
-         alert("请输入关键字");
-         return;
-       }
-     //  跳转到结果页面
-       location.href="/result.html?wd="+v.wd;
-     }
-   },
-   created:function () {
-     // 请求所有商品数据
-     axios.get("/product/index").then(function (resp){
-       v.productArr=resp.data;
-     })
-     // 请求排行榜数据
-        axios.get("/product/top").then(function (response) {
-        v.topArr = response.data;
+    methods:{
+      search(){
+        if(v.wd.trim()==""){
+          alert("请输入关键字");
+          return;
+        }
+        axios.get("/prouct/search?wa="+v.wd).then(function (resp) {
+          v.productArr=resp.data;
         })
-     //请求所有轮播图
-     axios.get("/banner/select").then(function (response) {
-       v.bannerArr = response.data;
-     })
-     //请求所有分类
-     axios.get("/category/select").then(function (response) {
-       v.categoryArr = response.data;
-     })
-   }
+      },
+      handleSelect(key,keyPath){
+        // 跳转到结果页面展示相关商品
+        axios.get("/product/category?id=key").then(function(resp){
+          v.productArr = resp.data;
+        })
+      }
+    },
+    created:function () {
+      if(location.search.indexOf("wd")!=-1){
+      //发出搜索请求                    ？wd="羽绒服"
+        axios.get("/product/search"+location.search).then(function (resp){
+          v.productArr=resp.data;
+        })
+      }else {
+        //通过地址栏中得到的id查询相关商品
+        axios.get("/product/category"+location.search).then(function (resp) {
+          v.productArr=resp.data;
+        })
+      }
+      //通过地址栏中得到的id查询相关商品
+      axios.get("/product/category"+location.search).then(function (resp) {
+        v.productArr=resp.data;
+      })
+      //请求所有分类
+      axios.get("/category/select").then(function (response) {
+        v.categoryArr = response.data;
+      })
+    }
   })
 </script>
 </html>

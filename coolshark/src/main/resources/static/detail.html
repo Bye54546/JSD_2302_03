@@ -23,7 +23,7 @@
     <el-header height="150px">
       <div style="width: 1200px;margin: 0 auto">
         <img src="imgs/logo.png" style="vertical-align: middle" width="300">
-        <a href="">首页</a><el-divider direction="vertical"></el-divider>
+        <a href="/">首页</a><el-divider direction="vertical"></el-divider>
         <a href="">热点资讯</a><el-divider direction="vertical"></el-divider>
         <a href="">商家入驻</a><el-divider direction="vertical"></el-divider>
         <a href="">社会招聘</a><el-divider direction="vertical"></el-divider>
@@ -31,18 +31,14 @@
         <a href="">帮助</a>
       </div>
       <div style="background-color: #0aa1ed">
-        <el-menu style="width: 1200px;margin: 0 auto"
+        <el-menu @select="handleSelect" style="width: 1200px;margin: 0 auto"
                  mode="horizontal" background-color="#0aa1ed"
-        text-color="#fff" active-text-color="#fff">
-          <el-menu-item index="1">精彩活动</el-menu-item>
-          <el-menu-item index="2">精品女装</el-menu-item>
-          <el-menu-item index="3">品牌男装</el-menu-item>
-          <el-menu-item index="4">母婴产品</el-menu-item>
-          <el-menu-item index="5">数码科技</el-menu-item>
+                 text-color="#fff" active-text-color="#fff">
+          <el-menu-item :index="c.id" v-for="c in categoryArr">{{c.name}}</el-menu-item>
 
           <div style="float: right;position: relative;top: 10px">
-            <el-input type="text">
-              <el-button slot="append" icon="el-icon-search"></el-button>
+            <el-input type="text"  v-model="wd">
+              <el-button @click="search()" slot="append" icon="el-icon-search"></el-button>
             </el-input>
           </div>
 
@@ -53,16 +49,18 @@
       <el-row gutter="20">
         <el-col span="12">
           <el-card>
-            <img src="imgs/a.jpg" width="100%">
+            <img :src="p.url" width="100%">
           </el-card>
         </el-col>
         <el-col span="12">
-          <p style="font-size: 25px;font-weight: bold">森马牛仔裤女宽松慢跑裤运动风2022春季新款显瘦束脚长裤复古</p>
+          <p style="font-size: 25px;font-weight: bold">{{p.title}}</p>
           <el-divider></el-divider>
-          <p style="font-size: 15px;color: #666">销量:232件 浏览量:543</p>
+          <p style="font-size: 15px;color: #666">销量:{{p.saleCount}}件 浏览量:{{p.viewCount}}
+          <span style="float: right">发布于：{{p.created}}</span>
+          </p>
           <p style="font-size: 20px;font-weight: bold">
-            ￥233 <span style="font-size: 15px;color: #666">
-            原价:<s>599</s></span>
+            ￥{{p.price}} <span style="font-size: 15px;color: #666">
+            原价:<s>{{p.oldPrice}}</s></span>
           </p>
           <el-row gutter="20" style="text-align: center">
             <el-col span="8">
@@ -100,33 +98,41 @@
 <!-- import JavaScript -->
 <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
 <script>
- let v = new Vue({
+  let v = new Vue({
     el: '#app',
     data: function() {
       return {
-        topArr:[{title:"联想电脑",saleCount:2313},
-          {title:"小米手机",saleCount:1987},
-          {title:"李宁毛巾",saleCount:1535},
-          {title:"匹克拖鞋",saleCount:1024},
-          {title:"华为电视",saleCount:985},
-          {title:"安踏跑鞋",saleCount:564}],
-        productArr:[{title:"森马牛仔裤女宽松慢跑裤运动风2022春季新款显瘦束脚长裤复古",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342},
-          {title:"茵曼马甲连衣裙两件套春季新款娃娃领色织格长袖背心裙套装",price:233,oldPrice:598,url:"imgs/b.jpg",saleCount:2342},
-          {title:"雪中飞墨绿色短袖t恤女夏2022新款纯棉半袖打底体恤夏季上衣潮ins",price:233,oldPrice:598,url:"imgs/c.jpg",saleCount:2342},
-          {title:"【佟丽娅同款】鸭鸭明星同款羽绒服2021年冬季新款时尚连帽外套冬",price:233,oldPrice:598,url:"imgs/d.jpg",saleCount:2342},
-          {title:"BEASTER小恶魔鬼脸明星同款夹克毛绒保暖加厚字母印花宽松外套ins",price:233,oldPrice:598,url:"imgs/e.jpg",saleCount:2342},
-          {title:"香影毛呢外套女中长款2021年冬季新款气质韩版娃娃领紫色呢子大衣",price:233,oldPrice:598,url:"imgs/f.jpg",saleCount:2342},
-          {title:"SEMIR森马商场同款打底针织毛衣纯色高领新品显瘦",price:233,oldPrice:598,url:"imgs/g.jpg",saleCount:2342},
-          {title:"美特斯邦威女MTEE 贺岁系列中长款风衣736598",price:233,oldPrice:598,url:"imgs/h.jpg",saleCount:2342},
-          {title:"imone2021秋款黑色小西装外套女韩版学生宽松学院风外套jk外套",price:233,oldPrice:598,url:"imgs/i.jpg",saleCount:2342},
-          {title:"BEASTER 小恶魔明星同款保暖长袖街头潮流连帽卫衣情侣上衣",price:233,oldPrice:598,url:"imgs/j.jpg",saleCount:2342},
-          {title:"憨厚皇后100%绵羊皮2021秋海宁真皮皮衣女长款修身绵羊皮风衣外",price:233,oldPrice:598,url:"imgs/k.jpg",saleCount:2342},
-          {title:"美特斯邦威高腰牛仔裤女宽松小脚新款春秋彩色潮流女士牛仔",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342}]
+        p:{},
+        categoryArr:[],
+        wd:"",
       }
     },
-   methods:{
-
-   }
+    methods:{
+      handleSelect(key,keyPath){
+        location.href="/result.html"+key;
+      },
+      search() {
+        if(v.wd.trim()==""){
+          v.$message.error("请输入关键字~");
+          return;
+        }
+        //跳到结果页面并且将wd传递过去
+        location.href = "/result.html?wd=" + v.wd;
+        axios.get("/product/search?wd=" + v.wd).then(function (resp) {
+          v.productArr = resp.data;
+        })
+      }
+    },
+    created: function () {
+      //通过id查询商品信息
+      axios.get("/product/detail" + location.search).then(function (response) {
+        v.p = response.data;
+      })
+    //  请求所有信息
+      axios.get("category/select").then(function (resp){
+        v.categoryArr=resp.data;
+      })
+    }
   })
 </script>
 </html>

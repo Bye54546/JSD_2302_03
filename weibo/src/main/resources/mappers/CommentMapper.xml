@@ -11,4 +11,7 @@
 from comment c JOIN user u on c.user_id=u.id
 where c.weibo_id=#{id}
 </select>
+    <delete id="deleteByWeiboId">
+        delete from comment where weibo_id=#{id}
+    </delete>
 </mapper>

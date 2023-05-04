@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tedu.weibo.mapper.UserMapper">
+<mapper namespace="cn.tedu.weibo.mapper.WeiboMapper">
     <insert id="insert">
         insert into weibo
         values (null, #{content}, #{urls}, #{created}, #{userId});
@@ -11,4 +11,16 @@
     select w.id id
     from w join u on u.id=w.user_id
 </select>
+    <select id="selectById" resultType="cn.tedu.weibo.pojo.vo.WeiboDetailVo">
+        select w.id,content,urls,created,nickname
+from weibo w join user u on u.id=w.user_id
+where w.id=#{id}
+    </select>
+    <select id="selectMine" resultType="cn.tedu.weibo.pojo.vo.WeiboMineVo">
+        SELECT id,content,created
+        FROM weibo WHERE user_id=#{id}
+    </select>
+    <delete id="deleteById">
+        DELETE FROM weibo WHERE id=#{id}
+    </delete>
 </mapper>

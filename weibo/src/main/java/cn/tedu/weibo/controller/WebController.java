@@ -1,9 +1,12 @@
 package cn.tedu.weibo.controller;
 
+import cn.tedu.weibo.mapper.CommentMapper;
 import cn.tedu.weibo.mapper.WeiboMapper;
 import cn.tedu.weibo.pojo.dto.WeiboDTO;
 import cn.tedu.weibo.pojo.entity.Weibo;
+import cn.tedu.weibo.pojo.vo.ResultVo;
 import cn.tedu.weibo.pojo.vo.UserVO;
+import cn.tedu.weibo.pojo.vo.WeiboDetailVo;
 import cn.tedu.weibo.pojo.vo.WeiboIndexVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.Result;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +40,27 @@ public class WebController {
     }
     @RequestMapping("select")
     public List<WeiboIndexVo> select(){
-
+    return mapper.select();
     }
+    @RequestMapping("selectById")
+    public WeiboDetailVo selectById(int id){
+        return mapper.selectById(id);
+    }
+    @RequestMapping("select/mine")
+    public ResultVo selectMine(HttpSession session){
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user==null){
+            return new ResultVo(2,"用户未登录",null);
+        }
+        return new ResultVo(1,"请求成功",mapper.selectMine(user.getId()));
+    }
+    @Autowired
+    CommentMapper commentMapper;
+    @RequestMapping("delete")
+    public void delete(int id){
+        commentMapper.deleteByWeiboId(id);
+        mapper.deleteById(id);
+    }
+
 }
+

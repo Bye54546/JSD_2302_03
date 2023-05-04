@@ -53,6 +53,10 @@
             <template slot-scope="scope">
               <el-button
                       size="mini"
+                      type="success"
+                      @click="handleCategoryUpdate(scope.$index, scope.row)">修改</el-button>
+              <el-button
+                      size="mini"
                       type="danger"
                       @click="handleCategoryDelete(scope.$index, scope.row)">删除</el-button>
             </template>
@@ -71,6 +75,10 @@
             <template slot-scope="scope">
               <el-button
                       size="mini"
+                      type="success"
+                      @click="handleBannerUpdate(scope.$index, scope.row)">修改</el-button>
+              <el-button
+                      size="mini"
                       type="danger"
                       @click="handleBannerDelete(scope.$index, scope.row)">删除</el-button>
             </template>
@@ -83,7 +91,7 @@
           <el-table-column label="商品标题" prop="title"></el-table-column>
           <el-table-column label="商品价格" prop="price"></el-table-column>
           <el-table-column label="商品原价" prop="oldPrice"></el-table-column>
-          <el-table-column label="商品库存" prop="saleCount"></el-table-column>
+          <el-table-column label="商品库存" prop="num"></el-table-column>
           <el-table-column label="商品图片" width="100px">
             <template slot-scope="scope">
               <img :src="scope.row.url" width="100%">
@@ -91,6 +99,10 @@
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
+              <el-button
+                      size="mini"
+                      type="success"
+                      @click="handleProductUpdate(scope.$index, scope.row)">修改</el-button>
               <el-button
                       size="mini"
                       type="danger"
@@ -117,30 +129,51 @@
     data: function() {
       return {
         currentIndex:"1-1",
-        productArr:[{title:"森马牛仔裤女宽松慢跑裤运动风2022春季新款显瘦束脚长裤复古",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342},
-          {title:"茵曼马甲连衣裙两件套春季新款娃娃领色织格长袖背心裙套装",price:233,oldPrice:598,url:"imgs/b.jpg",saleCount:2342},
-          {title:"雪中飞墨绿色短袖t恤女夏2022新款纯棉半袖打底体恤夏季上衣潮ins",price:233,oldPrice:598,url:"imgs/c.jpg",saleCount:2342},
-          {title:"【佟丽娅同款】鸭鸭明星同款羽绒服2021年冬季新款时尚连帽外套冬",price:233,oldPrice:598,url:"imgs/d.jpg",saleCount:2342},
-          {title:"BEASTER小恶魔鬼脸明星同款夹克毛绒保暖加厚字母印花宽松外套ins",price:233,oldPrice:598,url:"imgs/e.jpg",saleCount:2342},
-          {title:"香影毛呢外套女中长款2021年冬季新款气质韩版娃娃领紫色呢子大衣",price:233,oldPrice:598,url:"imgs/f.jpg",saleCount:2342},
-          {title:"SEMIR森马商场同款打底针织毛衣纯色高领新品显瘦",price:233,oldPrice:598,url:"imgs/g.jpg",saleCount:2342},
-          {title:"美特斯邦威女MTEE 贺岁系列中长款风衣736598",price:233,oldPrice:598,url:"imgs/h.jpg",saleCount:2342},
-          {title:"imone2021秋款黑色小西装外套女韩版学生宽松学院风外套jk外套",price:233,oldPrice:598,url:"imgs/i.jpg",saleCount:2342},
-          {title:"BEASTER 小恶魔明星同款保暖长袖街头潮流连帽卫衣情侣上衣",price:233,oldPrice:598,url:"imgs/j.jpg",saleCount:2342},
-          {title:"憨厚皇后100%绵羊皮2021秋海宁真皮皮衣女长款修身绵羊皮风衣外",price:233,oldPrice:598,url:"imgs/k.jpg",saleCount:2342},
-          {title:"美特斯邦威高腰牛仔裤女宽松小脚新款春秋彩色潮流女士牛仔",price:233,oldPrice:598,url:"imgs/a.jpg",saleCount:2342}],
-        categoryArr:[{id:1,name:"精彩活动"},{id:2,name:"精品女装"},
-          {id:3,name:"品牌男装"},{id:4,name:"母婴产品"}],
-        bannerArr:[{id:1,url:"imgs/b1.jpg"},{id:2,url:"imgs/b2.jpg"},
-          {id:3,url:"imgs/b3.jpg"}]
-
+        productArr:[],
+        categoryArr:[],
+        bannerArr:[]
       }
     },
    methods:{
+     handleProductUpdate(i,p){
+       location.href="/updateProduct.html?id="+p.id;
+     },
+     handleBannerUpdate(i,b){
+       //跳转到修改页面
+       location.href="/updateBanner.html?id="+b.id;
+     },
+     handleCategoryUpdate(i,c){
+       let name = prompt("请输入新的分类名称");
+       if (name==null){
+         return;
+       }
+       if (name.trim()==""){
+         v.$message.error("请输入分类名称!");
+         return;
+       }
+      //发出修改的异步请求
+       axios.post("/category/update",{id:c.id,name:name}).then(function () {
+         c.name=name;//让表格内容跟着改变
+       })
+
+     },
      handleSelect(key,keyPath){
        //key就是导航菜单项的index的值
        if (key=='1-2'){
-         v.$message("添加分类");
+         let name = prompt("请输入分类的名称");
+         if (name==null){//代表用户取消了操作
+           return;
+         }
+         if (name.trim()==""){
+           v.$message.error("请输入分类名称!");
+           return;
+         }
+         //发出添加分类的请求
+         axios.post("/category/insert?name="+name).then(function () {
+           location.reload();
+         })
+
+
        }else if(key=='2-2'){
          location.href="insertBanner.html";
        }else if(key=='3-2'){
@@ -150,17 +183,45 @@
        }
      },
      handleCategoryDelete(i,c){
-       v.categoryArr.splice(i,1);
-       v.$message.success("成功删除了"+c.name);
+       if (confirm("您确认删除此分类吗?")){
+         axios.post("/category/delete?id="+c.id).then(function () {
+           v.categoryArr.splice(i,1);
+           v.$message.success("成功删除了"+c.name);
+         })
+       }
+
      },
      handleBannerDelete(i,b){
-       v.bannerArr.splice(i,1);
-       v.$message.success("成功删除了轮播图");
+       if (confirm("您确认删除此轮播图吗?")){
+         axios.post("/banner/delete?id="+b.id).then(function () {
+           v.bannerArr.splice(i,1);
+           v.$message.success("成功删除了轮播图");
+         })
+       }
      },
      handleProductDelete(i,p){
-       v.productArr.splice(i,1);
-       v.$message.success("成功删除了"+p.title);
+       if (confirm("您确认删除此商品吗?")){
+         axios.post("/product/delete?id="+p.id).then(function () {
+           v.productArr.splice(i,1);
+           v.$message.success("成功删除了"+p.title);
+         })
+       }
      }
+   },
+   created:function () {
+      //获取所有商品数据
+     axios.get("/product/select").then(function (response) {
+       v.productArr = response.data;
+     })
+
+      //获取所有轮播图数据
+     axios.get("/banner/select").then(function (response) {
+       v.bannerArr = response.data;
+     })
+     //获取所有分类数据
+     axios.get("/category/select").then(function (response) {
+       v.categoryArr = response.data;
+     })
    }
   })
 </script>

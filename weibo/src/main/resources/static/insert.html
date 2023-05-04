@@ -21,7 +21,6 @@
     <el-dialog :visible.sync="dialogVisible">
         <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
-    <el-button @click="insert()">发微博</el-button>
     <input type="text" value="发微博" @click="insert()">
 </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -37,7 +36,6 @@
             fileList:[],
         },
         methods:{
-            methods: {
                 insert(){
                     if(v.fileList.length==0){
                         alert("请上传图片");
@@ -70,7 +68,6 @@
                     //file.response代表服务器上传成功时响应的文件路径
                     axios.post("/remove?url=" + file.response).then(function () {
                         alert("删除完成")
-
                     });
                 },
                 handlePictureCardPreview(file) {
@@ -78,7 +75,6 @@
                     this.dialogVisible = true;
                 },
             }
-        }
     })
 </script>
 </body>

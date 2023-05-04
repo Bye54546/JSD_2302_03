@@ -25,7 +25,7 @@ public class UploadController {
             dirFile.mkdirs();
         }
         picFile.transferTo(new File(dirPath+datePath+fileName));
-        return "success";
+        return datePath+fileName;
     }
     @RequestMapping("/remove")
     public void remove(String url){

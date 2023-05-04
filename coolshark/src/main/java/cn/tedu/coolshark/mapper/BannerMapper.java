@@ -7,5 +7,15 @@ import java.util.List;
 
 @Repository
 public interface BannerMapper {
-    List<Banner>select();
+    List<Banner> select();
+
+    void deleteById(int id);
+
+    void insert(String url);
+
+    Banner selectById(int id);
+
+    String selectUrlById(Integer id);
+
+    void update(Banner banner);
 }

@@ -9,7 +9,9 @@
 <div id="app">
   <el-page-header
           style="background-color: #0096dc;color: white;line-height: 60px"
-          @back="goBack()" content="添加轮播图页面"></el-page-header>
+          @back="goBack()" content="修改轮播图页面"></el-page-header>
+  <!--显示原来的图片-->
+  <img :src="banner.url" width="200">
   <!--上传组件开始-->
   <el-upload
           action="/upload"
@@ -25,7 +27,7 @@
     <img width="100%" :src="dialogImageUrl" alt="">
   </el-dialog>
   <!--上传组件结束-->
-  <el-button type="success" @click="insert()">开始上传</el-button>
+  <el-button type="success" @click="update()">修改</el-button>
 </div>
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -41,20 +43,21 @@
       return {
         dialogImageUrl: '',
         dialogVisible: false,
-        url:""
+        url:"",
+        banner:{url:""}
       }
     },
    methods:{
      handleSuccess(response,file,fileList){
         v.url = response;
      },
-     insert(){
+     update(){
        if (v.url==""){
          v.$message.error("请选择上传的图片!");
          return;
        }
-        //发出添加轮播图的请求
-       axios.post("/banner/insert?url="+v.url).then(function () {
+        //发出修改轮播图的请求
+       axios.post("/banner/update",{id:v.banner.id,url:v.url}).then(function () {
          location.href="/admin.html";
        })
      },
@@ -72,6 +75,12 @@
        this.dialogImageUrl = file.url;
        this.dialogVisible = true;
      }
+   },
+   created:function () {
+      //通过地址栏中的轮播图id查询轮播图详情
+     axios.get("/banner/selectById"+location.search).then(function (response) {
+       v.banner = response.data;
+     })
    }
   })
 </script>

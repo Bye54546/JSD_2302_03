@@ -9,8 +9,8 @@
 <div id="app">
   <el-page-header
           style="background-color: #0096dc;color: white;line-height: 60px"
-          @back="goBack()" content="添加商品页面"></el-page-header>
-  <el-card style="width: 600px;height: 700px;margin: 0 auto">
+          @back="goBack()" content="修改商品页面"></el-page-header>
+  <el-card style="width: 600px;height: 800px;margin: 0 auto">
     <el-form label-width="80px">
       <el-form-item label="商品标题"><el-input v-model="p.title" type="text"></el-input></el-form-item>
       <el-form-item label="商品价格"><el-input v-model="p.price" type="text"></el-input></el-form-item>
@@ -24,6 +24,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="商品图片">
+        <img :src="p.url" width="100">
         <!--上传组件开始-->
         <el-upload
                 action="/upload"
@@ -41,7 +42,7 @@
         <!--上传组件结束-->
       </el-form-item>
       <el-form-item>
-        <el-button type="success" @click="insert()">开始上传</el-button>
+        <el-button type="success" @click="update()">修改商品</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -68,12 +69,12 @@
       }
     },
    methods:{
-      insert(){
+      update(){
         if (v.p.url==""){
           v.$message.error("请选择上传的图片!");
           return;
         }
-        axios.post("/product/insert",v.p).then(function () {
+        axios.post("/product/update",v.p).then(function () {
           location.href = "/admin.html";
         })
 
@@ -99,6 +100,10 @@
    created:function () {
      axios.get("/category/select").then(function (response) {
        v.categoryArr = response.data;
+     })
+     //通过地址栏中的id查询商品详情
+     axios.get("/product/selectById"+location.search).then(function(response){
+       v.p = response.data;
      })
    }
   })

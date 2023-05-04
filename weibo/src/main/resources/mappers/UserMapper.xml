@@ -7,6 +7,6 @@
         insert into user values (null,#{username},#{password},#{nickname})
     </insert>
     <select id="selectByUsername" resultType="cn.tedu.weibo.pojo.vo.UserVO">
-        select i=d,password,nickname from user where username=#{username}
+        select id,password,nickname from user where username=#{username}
     </select>
 </mapper>

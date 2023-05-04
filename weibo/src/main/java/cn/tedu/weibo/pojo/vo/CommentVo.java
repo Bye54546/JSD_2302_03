@@ -3,7 +3,7 @@ package cn.tedu.weibo.pojo.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
-
+//VO是发送给前端的数据
 public class CommentVo {
     private Integer id;
     private String content;

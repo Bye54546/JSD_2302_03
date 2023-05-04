@@ -10,6 +10,7 @@
     <div v-if="isLogin">
         <h1>欢迎{{user.nickname}}回来</h1>
         <a href="/insert.html">发微博</a>
+        <a href="/myList.html"></a>
         <a href="javascript:void(0)" @click="logout()">退出登录</a>
     </div>
     <div v-else>
@@ -18,7 +19,9 @@
     </div>
     <hr>
     <div v-for="weibo in arr">
+        <a :href="'/detail.html?id='+weibo.id">
         <h3>{{weibo.nickname}}：说{{weibo.content}}</h3>
+        </a>
     </div>
 </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -43,13 +46,13 @@
             axios.get("/weibo/select").then(function (resp) {
                 v.arr=resp.data;
             })
-        //    发请求获取当前登录用户对象
+        //发请求获取当前登录用户对象
             axios.get("/currentUser").then(function (rep) {
                 //由于服务器给客户端传递数据时会将数据转成Json字符串，
                 // 这样服务器相应的是null时客户端接受的是空字符串
                 if (rep.data=="") {
                     v.isLogin=false;
-                }else {
+                }else {//如果不是空字符串代表有过登录，得到一个user对象
                     v.isLogin=true;
                     v.user=rep.data;
                 }

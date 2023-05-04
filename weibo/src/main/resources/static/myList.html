@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>我的微博列表</h1>
+    <div v-for="w in arr">
+        <h3>{{w.content}}</h3>
+        <p>发布于：{{w.created}} <a href="javascript:void(0)" @click="del(w.id)">删除</a></p>
+    </div>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script>
+    let v = new Vue({
+        el:"body>div",
+        data:{
+            arr:[],
+        },
+        methods:{
+            del(id){
+                if(confirm("您确定删除此微博吗？")){
+                    axios.post('/weibo/delete?id='+id).then(function (){
+                        alert("删除成功！");
+                        location.reload();
+                    })
+                }
+            }
+        },
+        created:function (){
+            axios.get("/weibo/select/mine").then(function (resp){
+                if (resp.data.code=2){
+                    alert("请先登录");
+                    location.href="/login.html";
+                }else {
+                    v.arr=resp.data.data;
+                }
+            })
+        }
+    })
+</script>
+</body>
+</html>

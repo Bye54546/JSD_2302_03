@@ -1,5 +1,5 @@
 package cn.tedu.weibo.pojo.dto;
-
+//DTO是接收前端数据的
 public class CommentDto {
     private String content;
     private Integer weiboId;
